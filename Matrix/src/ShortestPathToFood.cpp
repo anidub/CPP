@@ -76,8 +76,8 @@ int shortestPathGetFood(vector<vector<char>>& grid) {
 	}
 	return -1;
 }
-
-int main() {/*
+/*
+int main() {
 	vector<vector<char>> grid = {{'X','X','X','X','X'},
 								{'X','*','X','O','X'},
 								{'X','O','X','#','X'},
