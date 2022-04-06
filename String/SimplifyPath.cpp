@@ -24,6 +24,8 @@ Input: path = "/home//foo/"
 Output: "/home/foo"
 https://leetcode.com/problems/simplify-path/discuss/1050697/C%2B%2B-Simple-and-Easy-Solution-Faster-than-94
  */
+
+//TC: O(N). SC : O(N)
 string simplifyPath(string path) {
 	if(path.empty()) return "";
 	vector<string> stack;
