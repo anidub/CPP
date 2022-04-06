@@ -80,6 +80,8 @@ int main() {
 	for(int& i : result)
 		cout << i << " ";
 
+	delete root;
+
 	return 0;
 }
 */

@@ -4,6 +4,7 @@
 #include <numeric>
 #include <unordered_map>
 #include <stack>
+#include <vector>
 #include <unordered_set>
 
 using namespace std;
@@ -117,6 +118,66 @@ Node* getLCAParent(Node* p, Node* q) {
 	}
 	return a;
 }
+
+/*
+ * https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-ii/
+ * LCA if both of them do exist in tree else null
+ * Given the root of a binary tree, return the lowest common ancestor (LCA) of two given nodes, p and q. If either node p or q does not exist in the tree, return null. All values of the nodes in the tree are unique.
+ * https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-ii/discuss/923669/simple-C%2B%2B-solution
+ * WORKS!!
+ */
+/*
+BNode* LCABothHelper(BNode* root, BNode* p, BNode* q);
+BNode* lowestCommonAncestorBothExist(BNode* root, BNode* p, BNode* q) {
+	pair<BNode*, bool> result = LCABothHelper(root, p, q);
+	return result.second ? result.first : nullptr;
+}
+
+BNode* LCABothHelper(BNode* root, BNode* p, BNode* q) {
+	if(!root) return {nullptr, false};
+
+	pair<BNode*, bool> left = LCABothHelper(root->left, p, q) , right = LCABothHelper(root->right, p, q);
+
+	if(left.first && right.first)
+		return {root, true};
+	if(root == p || root == q)
+		return {root, left.first || right.first};
+
+	return left.first ? left : right;
+}*/
+
+/*
+ * for multipleNodes
+ * https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iv/
+ * Given the root of a binary tree and an array of TreeNode objects nodes, return the lowest common ancestor (LCA) of all the nodes in nodes. All the nodes will exist in the tree, and all values of the tree's nodes are unique.
+ * https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iv/discuss/1078824/C%2B%2B-or-Easy-to-understand-or-Fully-commented
+ */
+//WORKS!
+/*
+BNode* findLCAMultipleNodes(BNode* root, unordered_set<BNode*> st);
+int count;
+BNode* findLCAMultipleNodes(BNode* root, vector<BNode*> nodes) {
+	if(!root || nodes.size() == 0) return root;
+	count = 0;
+	unordered_set<BNode*> st (nodes.begin(), nodes.end());
+	BNode* LCA = findLCAMultipleNodes(root, st);
+	return count == nodes.size() ? LCA : nullptr;
+}
+
+BNode* findLCAMultipleNodes(BNode* root, unordered_set<BNode*> st) {
+	if(!root) return nullptr;
+
+	BNode* left = findLCAMultipleNodes(root->left, st);
+	BNode* right = findLCAMultipleNodes(root->right, st);
+
+	if(st.find(root) != st.end()) {	// Doing it in postorder fashion, because all the nodes needs to be found
+		count++;
+		return root;
+	}
+	if(left && right) return root;
+	return left != nullptr ? left : right;
+}*/
+
 /*
 int main() {
 	BNode * root = new BNode(1);
