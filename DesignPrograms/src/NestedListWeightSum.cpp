@@ -66,12 +66,12 @@ int depthSum(vector<NestedInteger>& nestedList) {
 		for(int i = 0; i < sz; i++) {
 			NestedInteger item = q.front(); q.pop();
 
-			if(item.isInteger()) {
+			/*if(item.isInteger()) { 				//WORKS!!
 				sum += item.getInteger() * depth;
 			} else {
 				for(auto &j : item.getList())
 					q.push(j);
-			}
+			}*/
 		}
 		depth++;
 	}
