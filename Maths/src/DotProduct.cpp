@@ -74,7 +74,7 @@ public:
 				res += pairs[p].second * vec.pairs[p].second;
 				p++;
 				q++;
-			} else if(pairs[p].first > vec.pairs[0].first)
+			} else if(pairs[p].first > vec.pairs[q].first)
 				q++;
 			else
 				p++;
