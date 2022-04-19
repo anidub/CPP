@@ -95,8 +95,6 @@ public:
                 m_sparse_vector.emplace_back(index, nums[index]);
             }
         }
-        // Time: O(nlogn) sort by positions in ascending order.
-        sort(m_sparse_vector.begin(), m_sparse_vector.end());
     }
 
     // Time: O(nlogm)
