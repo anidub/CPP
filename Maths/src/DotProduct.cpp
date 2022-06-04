@@ -74,7 +74,7 @@ public:
 				res += pairs[p].second * vec.pairs[p].second;
 				p++;
 				q++;
-			} else if(pairs[p].first > vec.pairs[0].first)
+			} else if(pairs[p].first > vec.pairs[q].first)
 				q++;
 			else
 				p++;
@@ -95,8 +95,6 @@ public:
                 m_sparse_vector.emplace_back(index, nums[index]);
             }
         }
-        // Time: O(nlogn) sort by positions in ascending order.
-        sort(m_sparse_vector.begin(), m_sparse_vector.end());
     }
 
     // Time: O(nlogm)
