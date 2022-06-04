@@ -33,7 +33,6 @@ ListNode* removeNthNodeFromEnd(ListNode *head, int n) {
 
 	if(fast == NULL) {
 		ans = head->next;
-		head = head->next;
 		return ans;
 	}
 

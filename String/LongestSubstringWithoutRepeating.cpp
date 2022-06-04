@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <numeric>
 #include <unordered_set>
+#include <unordered_map>
 #include <stack>
 #include <utility>
 
@@ -16,7 +17,7 @@ Explanation: The answer is "abc", with the length of 3.
  https://leetcode.com/problems/longest-substring-without-repeating-characters/discuss/376363/CPP-Solution-for-beginners-or-O(n)-time-or-Longest-Substring-without-repeating-characters
  */
 int lengthOfLongestSubstringWithoutRepeating(string s) {
-	if(s.empty()) return 0;
+	/*if(s.empty()) return 0;
     unordered_set<char> set;
 
     int i = 0, j = 0, n = s.size(), maxsize = 0;
@@ -39,7 +40,19 @@ int lengthOfLongestSubstringWithoutRepeating(string s) {
     for(int i = istart; i < iend; i++)
         an += s[i];
     cout << an << endl;
-    return maxsize;
+    return maxsize; */
+	if(s.empty()) return 0; //GTCI
+	unordered_map<char, int> mp;
+	int longest = 0, windowStart = 0;
+	for(int windowEnd = 0; windowEnd < s.size(); windowEnd++) {
+		char rightChar = s[windowEnd];
+		if(mp.find(rightChar) != mp.end()) {
+			windowStart = max(windowStart, mp[rightChar] + 1);
+		}
+		mp[rightChar] = windowEnd;;
+		longest = max(longest, windowEnd - windowStart + 1);
+	}
+	return longest;
 }
 /*
 int main() {

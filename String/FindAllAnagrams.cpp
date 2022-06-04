@@ -5,6 +5,7 @@
 #include <vector>
 #include <stack>
 #include <utility>
+#include <unordered_map>
 
 using namespace std;
 /*https://leetcode.com/problems/find-all-anagrams-in-a-string/
@@ -47,6 +48,34 @@ vector<int> findAnagrams(string s, string t) {
 	}
 	return ans;
 }
+//https://www.educative.io/courses/grokking-the-coding-interview/YQ8N2OZq0VM USED!
+vector<int> findAnagramsPattern(string s, string t) {
+	unordered_map<char, int> charFreq;
+	int matched = 0, windowStart = 0;
+	vector<int> result;
+	for(char &c : t) {
+		charFreq[c]++;
+	}
+
+	for(int windowEnd = 0; windowEnd < s.length(); windowEnd++) {
+		char rightChar = s[windowEnd];
+		if(charFreq.find(rightChar) != charFreq.end()) {
+			charFreq[rightChar]--;
+			if(charFreq[rightChar] == 0) matched++;
+		}
+		if(matched == charFreq.size()) result.push_back(windowStart);
+
+		if(windowEnd >= t.length() - 1) {
+			char leftChar = s[windowStart++];
+			if(charFreq.find(leftChar) != charFreq.end()) {
+				if(charFreq[leftChar] == 0) matched--;
+				charFreq[leftChar]++;
+			}
+		}
+	}
+	return result;
+}
+
 /*
 int main() {
 	findAnagrams("cbaebabacd", "abc");

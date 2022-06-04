@@ -22,7 +22,7 @@ struct ListNode {
       ListNode(int x) : val(x), next(nullptr) {}
       ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
-
+//TC: O(N1 + N2), SC: O(1)
 ListNode* addTwoNumbersForward(ListNode *l1, ListNode *l2) {
 	if(!l1) return l2;
 	if(!l2) return l1;

@@ -31,7 +31,7 @@ public:
 };
 
 MultiLLNode* flattenMultiLevelLinkedListIterative(MultiLLNode *head) {//Use this
-	if(!head) return NULL;
+	/*if(!head) return NULL;
 	MultiLLNode *cur = head;
 	while(cur) {
 		if(cur->child) {
@@ -48,7 +48,26 @@ MultiLLNode* flattenMultiLevelLinkedListIterative(MultiLLNode *head) {//Use this
 		}
 		cur = cur->next;
 	}
+	return head;*/
+	if(!head) return nullptr;
+	MultiLLNode *cur = head;
+	while(cur) {
+		if(cur->child) {
+			MultiLLNode *next = cur->next;
+			cur->next = cur->child;
+			cur->child = nullptr;
+			cur->next->prev = cur;
+			MultiLLNode *tail = cur->next;
+			while(tail->next)
+				tail = tail->next;
+			tail->next = next;
+			if(next)
+				next->prev = tail;
+		}
+		cur = cur->next;
+	}
 	return head;
+
 }
 
 MultiLLNode* flattenMultiLevelLinkedListRecusive(MultiLLNode *head) {

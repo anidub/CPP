@@ -53,6 +53,25 @@ ListNode* insertionSort(ListNode* head) {
 	}
 	return head;
 }
+
+ListNode* insertionSortEasy(ListNode* head) { //solutions tab//used
+	if(!head || !head->next) return head;
+	ListNode *dummy = new ListNode(-1);
+	ListNode *cur = head;
+
+	while(cur != nullptr) {
+		ListNode *prev = dummy;
+		while(prev->next != nullptr && prev->next->val < cur->val)
+			prev = prev->next;
+
+		ListNode *next = cur->next;
+		cur->next = prev->next;
+		prev->next = cur;
+
+		cur = next;
+	}
+	return dummy->next;
+}
 /*
 int main() {
 	ListNode *head = new ListNode(1);

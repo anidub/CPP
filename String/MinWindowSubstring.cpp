@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <numeric>
 #include <vector>
-#include <stack>
+#include <unordered_map>
 #include <utility>
 
 using namespace std;
@@ -46,6 +46,36 @@ string minWindowSubstring(string s, string t) {
 		}
 	}
 	return min == INT_MAX ? "" : s.substr(left, min);
+}
+
+//https://www.educative.io/courses/grokking-the-coding-interview/3wDJAYG2pAR GTCI
+//TC:O(N+M), SC: O(N)
+string minWindowSubstringPatter(string s, string t) {
+	unordered_map<char, int> charFreq;
+	int start = 0, matched = 0, minLen = s.length() + 1, windowStart = 0;
+
+	for(char &c : t)
+		charFreq[c]++;
+
+	for(int windowEnd = 0; windowEnd < s.length(); windowEnd++) {
+		char rightChar = s[windowEnd];
+		if(charFreq.find(rightChar) != charFreq.end()) {
+			charFreq[rightChar]--;
+			if(charFreq[rightChar] >= 0) matched++;
+		}
+		while(matched == t.length()) {
+			if(minLen >= windowEnd - windowStart + 1) {
+				minLen = windowEnd - windowStart + 1;
+				start = windowStart;
+			}
+			char leftChar = s[windowStart++];
+			if(charFreq.find(leftChar) != charFreq.end()) {
+				if(charFreq[leftChar] == 0) matched--;
+				charFreq[leftChar]++;
+			}
+		}
+	}
+	return minLen  > s.length() ? "" : s.substr(start, minLen);
 }
 /*
 int main() {

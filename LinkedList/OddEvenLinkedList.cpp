@@ -17,6 +17,9 @@ Note that the relative order inside both the even and odd groups should remain a
 You must solve the problem in O(1) extra space complexity and O(n) time complexity.
 
 https://leetcode.com/problems/odd-even-linked-list/discuss/78274/My-c%2B%2B-solution
+
+Input: head = [1,2,3,4,5]
+Output: [1,3,5,2,4]
  */
 struct ListNode {
      int val;

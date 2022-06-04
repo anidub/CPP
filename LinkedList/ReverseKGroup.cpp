@@ -32,26 +32,31 @@ struct ListNode {
  * To not leak memory and to not have to delete preheader manually use below
  */
 ListNode* reverseKGroupsOptimal(ListNode* head, int k) {
-	if(!head || k == 1) return head;
-	ListNode preheader = ListNode(-1);
-	preheader.next = head;
-	ListNode *cur = &preheader, *pre = &preheader, *nex;
-	int count = 0;
-	while(cur = cur->next) count++;
+    if(k <= 1 || head == nullptr) return head;
+    ListNode *cur = head, *prev = nullptr;
 
-	while(count >= k) {
-		cur = pre->next;
-		nex = cur->next;
-		for(int i = 1; i < k; i++) {
-			cur->next = nex->next;
-			nex->next = pre->next;
-			pre->next = nex;
-			nex = cur->next;
-		}
-		pre = cur;
-		count -= k;
-	}
-	return preheader.next;
+    while(cur != nullptr) {
+        ListNode *lastNodeOfPrev = prev;
+        ListNode *lastNodeOfSubList = cur;
+        ListNode *next = nullptr;
+
+        for(int i = 0; i < k && cur != nullptr; i++) {
+            next = cur->next;
+            cur->next = prev;
+            prev = cur;
+            cur = next;
+        }
+        if(lastNodeOfPrev != nullptr)
+            lastNodeOfPrev->next = prev;
+        else
+            head = prev;
+        lastNodeOfSubList->next = cur;
+
+        		if(cur == nullptr) break;
+	prev = lastNodeOfSubList;
+
+    }
+    return head;
 
 }
 

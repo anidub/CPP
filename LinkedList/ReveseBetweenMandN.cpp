@@ -26,7 +26,7 @@ struct ListNode {
 };
 
 ListNode* reverseBetweenMandN(ListNode *head, int m, int n){
-	if(!head || m == n) return head;
+	/*if(!head || m == n) return head;
 	n = n-m;
 	ListNode prehead(0);
 	prehead.next = head;
@@ -45,7 +45,31 @@ ListNode* reverseBetweenMandN(ListNode *head, int m, int n){
 		pre->next = p;
 		n--;
 	}
-	return prehead.next;
+	return prehead.next; */
+    if(head == nullptr || m == n) return head;
+    ListNode *prev = nullptr, *cur = head;
+    int i = 0;
+    while(cur != nullptr && i < m - 1) {
+        prev = cur;
+        cur = cur->next;
+        i++;
+    }
+    ListNode *firstNodeOfSub = cur;
+    ListNode *lastNodeOfFirst = prev;
+    i = 0;
+    ListNode *next;
+    while(cur != nullptr && i < n - m + 1) {
+        next = cur->next;
+        cur->next = prev;
+        prev = cur;
+        cur = next;
+        i++;
+    }
+    if(lastNodeOfFirst != nullptr) lastNodeOfFirst->next = prev;
+    else head = prev;
+
+    firstNodeOfSub->next = cur;
+    return head;
 }
 /*
 int main() {

@@ -67,6 +67,7 @@ ListNode* addTwoNumbersIterative(ListNode* l1, ListNode* l2) {
 		}
 		cur->next = new ListNode(carry%10);
 		cur = cur->next;
+		cout << cur->val << endl;
 		carry = carry/10;
 	}
 	return dummy->next;
@@ -79,7 +80,7 @@ int main() {
 
 	ListNode* l2 = new ListNode(5);
 	l2->next = new ListNode(6);
-	l2->next->next = new ListNode(7);
+	l2->next->next = new ListNode(4);
 
 	ListNode* result = addTwoNumbersIterative(l1, l2);
 	ListNode* dummy = result;
