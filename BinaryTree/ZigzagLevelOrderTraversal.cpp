@@ -25,7 +25,7 @@ public:
 		this->right = NULL;
 	}
 };
-//check wheter stacks allowed or not
+//check whether stacks allowed or not
 vector<vector<int>> zigzagTraversalStacks(BNode* root) {
 	vector<vector<int>> levels;
 	if(!root) return levels;
@@ -55,33 +55,25 @@ vector<vector<int>> zigzagTraversalStacks(BNode* root) {
 	return levels;
 }
 
-vector<vector<int>> zigzagTraversalWithoutStacks(BNode* root) {
-	vector<vector<int>> levels;
-	if(!root) return levels;
-
-	queue<BNode*> toVisit;
-	toVisit.push(root);
-	bool flag = false;
-	int currentLevelNode = 1;
-
-	while(!toVisit.empty()) {
-		vector<int> level;
-		for(int i = 0; i < currentLevelNode; i++) {
-			BNode* node = toVisit.front();
-			toVisit.pop();
-			level.push_back(node->data);
-			if(node->left) toVisit.push(node->left);
-			if(node->right) toVisit.push(node->right);
-		}
-		if(flag) {
-			reverse(level.begin(), level.end());
-			flag = false;
-		} else
-			flag = true;
-		levels.push_back(level);
-		currentLevelNode = toVisit.size();
-	}
-	return levels;
+vector<vector<int>> zigzagTraversalWithoutStacks(BNode* root) { //USED
+    if(root == nullptr) return {};
+    vector<vector<int>> result;
+    queue<BNode*> q; q.push(root);
+    while(!q.empty()) {
+        int len = q.size();
+        vector<int> level;
+        for(int i = 0; i < len; i++) {
+        	BNode* node = q.front(); q.pop();
+            level.push_back(node->data);
+            if(node->right) q.push(node->right);
+            if(node->left) q.push(node->left);      //change this order for zigzag in other direction
+        }
+        if(result.size() % 2 == 0) {
+            reverse(level.begin(), level.end());
+        }
+        result.push_back(level);
+    }
+    return result;
 }
 
 vector<vector<int>> zigzagLevelOrderDFS(BNode* root);

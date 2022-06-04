@@ -47,24 +47,22 @@ public:
 	}
 };
 //Time: O(n), it will visit all the nodes and each node once.Space: O(h)
-void zigzagLength(BNode *root, int left, int right, int& ans);
+int zigzagLength(BNode *root, bool left, int& ans);
 int longestZigZagLenth(BNode *root) {
-	int left = 0, right = 0;
+	if(root == nullptr) return 0;
 	int ans = 0;
-
-	zigzagLength(root, left, right, ans);
+	zigzagLength(root, false, ans);
 	return ans;
 }
 
-void zigzagLength(BNode *root, int left, int right, int& ans) {
-	if(!root) return;
+int zigzagLength(BNode *root, bool left, int& ans){
+	if(!root) return -1;
+	int l = zigzagLength(root->left, false, ans);
+	int r = zigzagLength(root->right, true, ans);
 
-	ans = max(ans, max(left, right));
+	ans = max(ans, max(l + 1, r + 1));
 
-	zigzagLength(root->left, 0, left + 1, ans);
-	zigzagLength(root->right, right + 1, 0, ans);
-
-	return;
+	return l ? l + 1 : r + 1;
 }
 /*
 int main() {

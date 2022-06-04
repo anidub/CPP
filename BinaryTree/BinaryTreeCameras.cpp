@@ -29,28 +29,23 @@ public:
 	}
 };
 
-BNode* camRoot;
+int camAns;
 int minCameraCoverPostOrder(BNode* camRoot);
 
 // Time: O(N) Space: O(logN)
 int minCameraCover(BNode* root) {
-	camRoot = root;
-	return minCameraCoverPostOrder(camRoot);
+	return minCameraCoverPostOrder(root)  == 0 ? camAns + 1 : camAns;
 }
 
 int minCameraCoverPostOrder(BNode* root) {
-	if(!root) return 0;
-	int ans = minCameraCoverPostOrder(root->left) + minCameraCoverPostOrder(root->right);
-    int left = root->left ? root->left->data : 1;
-    int right = root->right ? root->right->data : 1;
+	if(root == nullptr) return 1;
+	int left = minCameraCoverPostOrder(root->left);
+	int right = minCameraCoverPostOrder(root->right);
 
 	if(left == 0 || right == 0) {
-		root->data = 2;
-		return ans+1;
-	} else if(left == 2 || right == 2) {
-		root->data = 1;
-		return ans;
-	} else return camRoot == root ? ans + 1 : ans;
+		camAns++;
+		return 2;
+	} else return left == 2 || right == 2 ? 1 : 0;
 }
 /*
 int main() {

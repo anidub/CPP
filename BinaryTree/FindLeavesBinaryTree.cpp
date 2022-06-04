@@ -58,6 +58,30 @@ BNode* findLeavesBinaryTreeUtil(BNode* root, vector<int>& v) {
 	root->right = findLeavesBinaryTreeUtil(root->right, v);
 	return root;
 }
+
+int getHeights(BNode* root);
+//TC:O(N), SC:O(N): SOLN tab
+vector<vector<int>> findLeavesBinaryTreeBetter(BNode* root) {
+	if(root == nullptr) return res;
+	res.clear();
+	getHeights(root);
+	return res;
+}
+
+int getHeights(BNode* root) {
+	if(root == nullptr) return -1;
+
+	int left = getHeights(root->left);
+	int right = getHeights(root->right);
+
+	int curHeight = max(left, right) + 1;
+
+	if(res.size() == curHeight)
+		res.push_back({});
+
+	res[curHeight].push_back(root->data);
+	return curHeight;
+}
 /*
 int main() {
 	BNode* root = new BNode(20);

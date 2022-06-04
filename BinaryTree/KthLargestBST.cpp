@@ -27,7 +27,7 @@ public:
 void kthLargest(BNode* root, int k);
 void kthLargestUtil(BNode* root, int k, int& c);
 
-void kthLargestUtil(BNode* root, int k, int& c) {
+void kthLargestUtil(BNode* root, int k, int& c) { // we start with right most since that is the largest elements in bst
 	if(root == NULL || c >= k)
 		return;
 
@@ -43,7 +43,7 @@ void kthLargestUtil(BNode* root, int k, int& c) {
 void kthLargest(BNode* root, int k) {
 	if(root == NULL) return;
 
-	int c = 0;
+	int c = 0;//count
 	kthLargestUtil(root, k, c);
 }
 /*

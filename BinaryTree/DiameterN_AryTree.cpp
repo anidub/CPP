@@ -41,7 +41,7 @@ int diameterN_AryTree(N_aryNode* root) {
 }
 //TC: O(N), SC; O(N)
 int diameterN_AryTreeDFS(N_aryNode* current, int maxDiameter) {
-	if(current->children.empty()) return 0;// Base case: Node has no children
+	if(current == nullptr || current->children.empty()) return 0;// Base case: Node has no children
 
 	int largestChildPath = 0;// Store the first and second largest child paths (initially 0)
 	int secondLargestChildPath = 0;

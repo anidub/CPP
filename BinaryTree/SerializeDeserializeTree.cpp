@@ -49,6 +49,7 @@ string serializeIterative(BNode* root) {
     return ans;
 }
 
+//TC:O(N) SC:O(N^2)
 string serialize(BNode* root) {
 	if(root == NULL) return "#";
 	return to_string(root->data) + "," + serialize(root->left) + "," + serialize(root->right);
@@ -57,7 +58,7 @@ string serialize(BNode* root) {
 BNode* deserialize(string data) {
 	return deserializeUtil(data);
 }
-
+//TC:O(N)
 BNode* deserializeUtil(string& data) {
 	if(data[0] == '#') {
 		if(data.size() > 1) data = data.substr(2);

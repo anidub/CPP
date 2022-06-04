@@ -10,10 +10,13 @@
 
 using namespace std;
 /*https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/
- *Given the root of a binary tree, the value of a target node target, and an integer k, return an array of the values of all nodes that have a distance k from the target node.
+ *Given the root of a binary tree, the value of a target node target, and an integer k,
+ *return an array of the values of all nodes that have a distance k from the target node.
 
 You can return the answer in any order
 https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/discuss/143775/very-easy-to-understand-c%2B%2B-solution.
+
+TC:O(N), SC:O(N)
  */
 class BNode{
 public:

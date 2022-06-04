@@ -8,6 +8,7 @@
 /*
  * https://leetcode.com/problems/binary-tree-postorder-traversal/discuss/1678315/C%2B%2B-3-solutions-1-recursive-and-two-iterative-with-one-or-two-stack
  * https://leetcode.com/problems/binary-tree-postorder-traversal/
+ * https://leetcode.com/problems/binary-tree-postorder-traversal/discuss/45648/3-ways-of-Iterative-PostOrder-Traversing-(Morris-traversal)
  */
 using namespace std;
 
@@ -25,32 +26,36 @@ public:
 };
 
 void postOrderTraversalRecursive(BNode* root);
-void postOrderTraversalIterative2Stacks(BNode* root);
-void postOrderTraversalIterative1Stack(BNode* root, vector<int>& traversals);
+vector<int> postOrderTraversalIterative1Stack(BNode* root, vector<int>& traversals);
+/*https://www.geeksforgeeks.org/morris-traversal-for-postorder/
+ *  Time Complexity: O(N). sc:o(1)
+ */
+vector<int> postOrderTraversalIterativeMorrisTraversal(BNode* root) {
+	if(root == nullptr) return {};
+	vector<int> res;
+	BNode* cur = root;
 
-void postOrderTraversalIterative2Stacks(BNode* root) {
-	if(root == NULL) return;
-	stack<BNode*> s;
-	s.push(root);
-
-	stack<BNode*> out;
-
-	while(!s.empty()) {
-		BNode* curr = s.top();
-		s.pop();
-
-		out.push(curr);
-
-		if(curr->left)
-			s.push(curr->left);
-		if(curr->right)
-			s.push(curr->right);
+	while(cur != nullptr) {
+		if(cur->right == nullptr) {
+			res.push_back(cur->data);
+			cur = cur->left;
+		} else {
+			BNode* predecessor = cur->right;
+			while(predecessor->left != nullptr && predecessor->left != cur) {
+				predecessor = predecessor->left;
+			}
+			if(predecessor->left == nullptr) {
+				res.push_back(cur->data);
+				predecessor->left = cur;
+				cur = cur->right;
+			} else {
+				predecessor->left = nullptr;
+				cur = cur->left;
+			}
+		}
 	}
-
-	while(!out.empty()){
-		cout << out.top() << " ";
-		out.pop();
-	}
+	reverse(res.begin(), res.end());
+	return res;
 }
 
 
@@ -63,30 +68,27 @@ void postOrderTraversalRecursive(BNode* root) {
 }
 
 
-void postOrderTraversalIterative1Stack(BNode* root, vector<int>& traversals) {
-	BNode* node = root;
-	BNode* temp;
-	stack<BNode*> st;
+vector<int> postOrderTraversalIterative1Stack(BNode* root, vector<int>& traversals) {
+			vector<int> nodes;
+			BNode* node = root, *last = nullptr;
+	        stack<BNode*> stk;
 
-	while(!st.empty() || node) {
-		if(node) {
-			st.push(node);
-			node = node->left;
-		} else {
-			temp = st.top()->right;
-			if(!temp) {
-				temp = st.top();
-				st.pop();
-				traversals.push_back(temp->data);
-				while(!st.empty() && st.top()->right == temp) {
-					temp = st.top();
-					st.pop();
-					traversals.push_back(temp->data);
-				}
-			} else
-				node = temp;
-		}
-	}
+	        while(!stk.empty() || node) {
+	            if(node) {
+	                stk.push(node);
+	                node = node->left;
+	            } else {
+	            	BNode* temp = stk.top();
+	                if(temp->right && last != temp->right) {
+	                    node = temp->right;
+	                } else {
+	                    nodes.push_back(temp->data);
+	                    last = temp;
+	                    stk.pop();
+	                }
+	            }
+	        }
+	        return nodes;
 }
 /*
 int main() {

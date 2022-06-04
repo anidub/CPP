@@ -23,48 +23,55 @@ public:
 };
 
 //assumes keys are present in tree
-BNode* findLCAbothPresent(BNode* root, int n1, int n2) {
+BNode* findLCANodesbothPresent(BNode* root, BNode* n1, BNode* n2) {
 	if(root == NULL) return NULL;
 
-	if(root->data == n1 || root->data == n2)
+	if(root == n1 || root == n2)
 		return root;
 
-	BNode* leftLCA = findLCAbothPresent(root->left, n1, n2);
-	BNode* rightLCA = findLCAbothPresent(root->right, n1, n2);
+	BNode* leftLCA = findLCANodesbothPresent(root->left, n1, n2);
+	BNode* rightLCA = findLCANodesbothPresent(root->right, n1, n2);
 
 	if(leftLCA && rightLCA) return root;
 
-	return leftLCA != NULL ? leftLCA : rightLCA;
+	return leftLCA != NULL ? leftLCA : rightLCA;;
 }
 
-//assumes keys are present in tree
+//assumes keys are present in tree //soln tab
 BNode* findLCiterative(BNode* root, BNode* p, BNode* q) {
-	if(root == NULL) return NULL;
-	unordered_map<BNode*, BNode*> parent;
-	parent[root] = NULL;
-	stack<BNode*> st;
-	st.push(root);
+    if (!root || root == p || root == q) return root;
 
-	while(!parent[p] || !parent[q]) {
-		BNode* node = st.top(); st.pop();
-		if(node->left) {
-			parent[node->left] = node;
-			st.push(node->left);
-		}
-		if(node->right) {
-			parent[node->right] = node;
-			st.push(node->right);
-		}
-	}
-	unordered_set<BNode*> ancestor;
-	while(p) {
-		ancestor.insert(p);
-		p = parent[p];
-	}
-	while(ancestor.find(q) == ancestor.end()) {
-		q = parent[q];
-	}
-	return q;
+//    bool v1 = findBNode(root, p->val); this to verify node present in tree
+//	    bool v2 = findBNode(root, q->val); // same as above
+
+    unordered_map<BNode*, BNode*> parent;
+    parent[root] = NULL;
+
+    stack<BNode*> stk;
+    stk.push(root);
+
+    while (!parent[p] || !parent[q]) {// Iterate until we find both the nodes p and q
+    	BNode* node = stk.top(); stk.pop();
+        if (node->left) {
+            parent[node->left] = node;
+            stk.push(node->left);
+        }
+        if (node->right) {
+            parent[node->right] = node;
+            stk.push(node->right);
+        }
+    }
+
+    unordered_set<BNode*> ancestor;
+    while (p) {
+        ancestor.insert(p);
+        p = parent[p];
+    }
+    while (ancestor.find(q) == ancestor.end()) {// The first ancestor of q which appears in
+    // p's ancestor set() is their lowest common ancestor.
+        q = parent[q];
+    }
+    return q;
 }
 
 bool findBNode(BNode* root, int k) {
@@ -81,7 +88,7 @@ BNode* findLCAbothNotPresent(BNode* root, BNode* p, BNode* q) {
 	bool v2 = findBNode(root, q->data);
 
 	if(!v1 || !v2) return NULL;
-	else return findLCAbothPresent(root, p->data, q->data);
+	else return findLCANodesbothPresent(root, p, q);
 }
 
 //https://github.com/keineahnung2345/leetcode-cpp-practices/blob/master/235.%20Lowest%20Common%20Ancestor%20of%20a%20Binary%20Search%20Tree.cpp

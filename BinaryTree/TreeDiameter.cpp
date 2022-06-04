@@ -55,6 +55,52 @@ int treeDiameterDFS(vector<vector<int>> &nodes, int &diameter, vector<bool> &vis
 	}
 	return i == 0 ? diameter : max_depth + 1;
 }
+
+
+
+
+
+
+int treeDiameterBetterDFS(vector<vector<int>> &adjacencyList, vector<bool> &visited, int node);
+int max_count;
+//https://leetcode.com/problems/tree-diameter/discuss/465080/C%2B%2B%3A-DFS-O(n)-Easy-to-understand
+//Soln tab used
+//TC:O(N), SC:O(N)
+int treeDiameterBetter(vector<vector<int>> &edges) {
+	if(edges.empty()) return 0;
+	max_count = 0;
+	int n = edges.size();
+	vector<bool> visited(n + 1, false);
+
+	vector<vector<int>> adjacencyList(n + 1, vector<int> ());
+
+	for(int i = 0; i < n; i++) {
+		adjacencyList[edges[i][0]].push_back(edges[i][1]);
+		adjacencyList[edges[i][1]].push_back(edges[i][0]);
+	}
+
+	treeDiameterBetterDFS(adjacencyList, visited, 0);
+	return max_count;
+}
+
+int treeDiameterBetterDFS(vector<vector<int>> &adjacencyList, vector<bool> &visited, int node) {
+	visited[node] = true;
+
+	int first_max = 0, second_max = 0;
+
+	for(int i : adjacencyList[node]) {
+		if(visited[i]) continue;
+		int len = 1 + treeDiameterBetterDFS(adjacencyList, visited, i);
+		if(len > first_max) {
+			second_max = first_max;
+			first_max = len;
+		} else if(len > second_max) {
+			second_max = len;
+		}
+	}
+	max_count = max(max_count, first_max + second_max);
+	return first_max;
+}
 /*
 int main() {
 	vector<vector<int>> edges = {{0,1},{0,2}};

@@ -19,6 +19,9 @@ https://leetcode.com/problems/all-possible-full-binary-trees/solution/ :: needs 
 https://leetcode.com/problems/all-possible-full-binary-trees/discuss/166480/C%2B%2B-16-line
 https://leetcode.com/problems/all-possible-full-binary-trees/discuss/340007/C%2B%2B-recursive-solution
 used combo of above 2
+
+better solution:
+https://leetcode.com/problems/all-possible-full-binary-trees/discuss/167402/c++-recursive-and-iterative-solutions.-Doesn't-create-Frankenstein-trees-or-leak-memory
  */
 class BNode{
 public:
@@ -35,6 +38,7 @@ public:
 
 map<int, vector<BNode*>> binaryMap;
 
+//TC:O(2^N), sc:O(2^N) :https://leetcode.com/problems/all-possible-full-binary-trees/solution/
 vector<BNode*> allPossibleBinaryFullTrees(int N) {
 // it is impossible to have a full binary tree on an even number of nodes (both left and right subtrees must be full, + 1 for the root makes it an odd number of nodes)
 	if(binaryMap.count(N)) return binaryMap[N];

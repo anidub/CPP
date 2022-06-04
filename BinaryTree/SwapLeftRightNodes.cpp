@@ -8,7 +8,10 @@
 
 using namespace std;
 /* change a tree so that the roles of the left
-and right hand pointers are swapped at every node */
+and right hand pointers are swapped at every node
+https://www.geeksforgeeks.org/write-an-efficient-c-function-to-convert-a-tree-into-its-mirror-tree/
+ Worst-case Time complexity is O(n), SC:O(1)
+ */
 
 class BNode{
 public:
@@ -24,14 +27,13 @@ public:
 };
 
 void swapLeftRightNodes(BNode* root) {
-	if(root == NULL) return;
-
+	if(root == nullptr) return;
 	swapLeftRightNodes(root->left);
 	swapLeftRightNodes(root->right);
 
-	BNode* tmp = root->right;
-	root->right = root->left;
-	root->left = tmp;
+	BNode* tmp = root->left;
+	root->left = root->right;
+	root->right = tmp;
 }
 /*
 int main() {

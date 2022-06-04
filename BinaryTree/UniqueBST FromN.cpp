@@ -25,7 +25,8 @@ public:
  * Given an integer n, return all the structurally unique BST's (binary search trees), which has exactly n nodes of unique values from 1 to n. Return the answer in any order.
  * https://leetcode.com/problems/unique-binary-search-trees-ii/discuss/31597/30-ms-c%2B%2B-solution
  *
- *Time complexity : The main computations are to construct all possible trees with a given root, that is actually Catalan number Gn. This is done n times, that results in time complexity nGn
+ *Time complexity : The main computations are to construct all possible trees with a given root,
+ *Time  that is actually Catalan number Gn. This is done n times, that results in time complexity nGn
 
 Space complexity : nGn as we keep Gn trees with n elements
  */
@@ -43,6 +44,7 @@ vector<BNode*> getUniqueBSTFromNDFS(int s,int e) {
 	for(int i = s; i <= e; i++) {
 		vector<BNode*> left = getUniqueBSTFromNDFS(s, i-1);
 		vector<BNode*> right = getUniqueBSTFromNDFS(i+1, e);
+
 		for(int j = 0; j < left.size(); j++) {
 			for(int k = 0; k < right.size(); k++) {
 				BNode* root = new BNode(i);

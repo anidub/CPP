@@ -45,8 +45,8 @@ int rangeSumBSTIterative(BNode* root, int L, int H) {
 		q.pop();
 		if(node->data >= L && node->data <= H)
 			sum += node->data;
-		if(node->data > L && node->left) q.push(node->left);
-		if(node->data < H && node->right) q.push(node->right);
+		if(node->data >= L && node->left) q.push(node->left);
+		if(node->data <= H && node->right) q.push(node->right);
 	}
 	return sum;
 }

@@ -28,6 +28,7 @@ void getEvenOddLevelElements(BNode* root) {
 	q.push(root);
 	bool isOdd = true;
 	vector<int> even; vector<int> odd;
+
 	while(true) {
 		int size = q.size();
 		if(size == 0) break;

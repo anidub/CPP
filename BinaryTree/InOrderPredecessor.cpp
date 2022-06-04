@@ -46,9 +46,12 @@ BNode* findPredecessor(BNode* root, BNode* pred, int key) {
 }
 
 BNode* findMaximumBST(BNode* root) {
-	while(root->right) {
+/*	while(root->right) {
 		root = root->right;
 	}
+	return root; */
+	while(root->right)
+		root = root->right;
 	return root;
 }
 
@@ -59,7 +62,7 @@ BNode* findPredecessorIterative(BNode* root, int key) {
 
 	while(true) {
 		 // if the given key is less than the root node, visit the left subtree
-		if(root->data < key) {
+		if(key < root->data) {
 			root = root->left;
 
 			// if the given key is more than the root node, visit the right subtree
@@ -74,7 +77,7 @@ BNode* findPredecessorIterative(BNode* root, int key) {
 			break;
 		}
 		 // if the key doesn't exist in the binary tree, return previous greater node
-		if(!root) return pred;
+		if(!root) return pred; // not sure of this line maybe it should be  just before we do key check
 	}
 	return pred;
 }

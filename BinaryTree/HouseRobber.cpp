@@ -10,7 +10,8 @@ using namespace std;
 /*https://leetcode.com/problems/house-robber-iii/
  * The thief has found himself a new place for his thievery again. There is only one entrance to this area, called root.
 
-Besides the root, each house has one and only one parent house. After a tour, the smart thief realized that all houses in this place form a binary tree. It will automatically contact the police if two directly-linked houses were broken into on the same night.
+Besides the root, each house has one and only one parent house. After a tour, the smart thief realized that
+all houses in this place form a binary tree. It will automatically contact the police if two directly-linked houses were broken into on the same night.
 
 Given the root of the binary tree, return the maximum amount of money the thief can rob without alerting the police.
 https://leetcode.com/problems/house-robber-iii/discuss/1611899/C%2B%2B-or-with-and-without-memo-or-Detailed-explaination
@@ -59,7 +60,7 @@ int houseRobberUtil(BNode* root) {
 	return ans;
 }
 
-
+//TC:O(N), SC:O(N)
 int houseRobberOptimal(BNode* root) {
 	if(!root) return 0;
 	pair<int, int> ans = houseRobberOptimalUtil(root);

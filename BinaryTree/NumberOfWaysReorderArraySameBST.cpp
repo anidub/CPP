@@ -72,6 +72,7 @@ int numberOfWaysReorderBST(vector<int>& nums) {
 
 	long long mod = 1e9 + 7;
 
+	// Pascal triangle : https://www.geeksforgeeks.org/pascal-triangle/
 	for(int i = 0; i < n+1; i++) {
 		pascalTable[i] = vector<long long>(i+1, 1);
 		for(int j = 1; j < i; j++) {

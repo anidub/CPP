@@ -15,6 +15,8 @@ Output: [3,1,null,null,2]
 Explanation: 3 cannot be a left child of 1 because 3 > 1. Swapping 1 and 3 makes the BST valid.
 
 https://leetcode.com/problems/recover-binary-search-tree/discuss/32580/recommend-for-beginnersclean-C%2B%2B-implementation-with-detailed-explaination :comments
+
+ https://leetcode.com/problems/recover-binary-search-tree/solution/ : morris traversal optimal
  */
 class BNode{
 public:
@@ -50,6 +52,47 @@ void recoverTreeUtil(BNode* root) {
 
 	previous = root;
 	recoverTreeUtil(root->right);
+}
+//https://leetcode.com/problems/recover-binary-search-tree/discuss/926903/C-Solution-Morris-inorder-traversal
+void recoverTreeOptimalMorris(BNode* root) {
+	if(root == nullptr) return;
+	BNode* fnode = nullptr, *snode = nullptr, *pnode = nullptr, *pred = nullptr;
+	BNode* cur = root;
+
+	while(cur != nullptr) {
+		if(cur->left == nullptr) {
+			if(pnode != nullptr && cur->data <= pnode->data) {
+				if(fnode == nullptr)
+					fnode = pnode;
+				snode = cur;
+			}
+			pnode = cur;
+			cur = cur->right;
+		} else {
+			pred = cur->left;
+			while(pred->right != nullptr && pred->right != cur){
+				pred = pred = pred->right;
+			}
+			if(pred->right == nullptr) {
+				pred->right = cur;
+				cur = cur->left;
+			} else {
+				if(pnode != nullptr && cur->data <= pnode->data) {
+					if(fnode == nullptr)
+						fnode = pnode;
+					snode = cur;
+				}
+				pnode = cur;
+				pred->right = nullptr;
+				cur = cur->right;
+			}
+		}
+	}
+	int t = fnode->data;
+	fnode->data = snode->data;
+	snode->data = t;
+
+	return;
 }
 /*
 int main() {

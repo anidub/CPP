@@ -83,5 +83,5 @@ int main() {
 	delete root;
 
 	return 0;
-}
+}//20 8 4 10 14 25 22
 */

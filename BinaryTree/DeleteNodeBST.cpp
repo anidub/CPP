@@ -19,6 +19,8 @@ In the above recursive code, we recursively call delete() for the successor. We 
  by making the child of a parent NULL. We know that the successor would always be a leaf node.
 
  Iterative:https://leetcode.com/problems/delete-node-in-a-bst/discuss/1061984/C%2B%2B-iterative-solution
+
+ https://leetcode.com/problems/delete-node-in-a-bst/solution/ : USED
  */
 class BNode{
 public:
@@ -70,6 +72,40 @@ BNode* deleteNodeBST(BNode* root, int key) {
 			return root;
 		}
 	}
+}
+
+int successor(BNode* root) {
+	root = root->right;
+	while(root->left != nullptr)
+		root = root->left;
+	return root->data;
+}
+
+int predecessor(BNode* root) {
+	root = root->left;
+	while(root->right != nullptr)
+		root = root->right;
+	return root->data;
+}
+//USED
+//TC: O(LOGN), SC:O(H) to keep recursion stack
+BNode* deleteNodeInBST(BNode* root, int key) {
+	if(root == nullptr) return root;
+	if(key < root->data)
+		root->left = deleteNodeBST(root->left, key);
+	else if(key > root->data)
+		root->right = deleteNodeBST(root->right, key);
+	else{
+		if(root->left == nullptr && root->right == nullptr) root = nullptr;
+		else if(root->right != nullptr) {
+			root->data = successor(root);
+			root->right = deleteNodeInBST(root->right, root->data);
+		} else {
+			root->data = predecessor(root);
+			root->left = deleteNodeInBST(root->left, root->data);
+		}
+	}
+	return root;
 }
 
 /*

@@ -18,16 +18,16 @@ public:
 	}
 };
 
-void reverseOrderPrint(BNode* root);
+void reverseInOrderPrint(BNode* root);// right parent left
 
-void reverseOrderPrint(BNode* root) {
+void reverseInOrderPrint(BNode* root) {// right parent left
 	if(root->left == NULL && root->right == NULL) {
 		cout << root->data  << " ";
 		return;
 	}
-	reverseOrderPrint(root->right);
+	reverseInOrderPrint(root->right);
 	cout << root->data << " ";
-	reverseOrderPrint(root->left);
+	reverseInOrderPrint(root->left);
 }
 /*
 int main() {
@@ -37,7 +37,7 @@ int main() {
 	root->right->left = new BNode(16);
 	root->right->right = new BNode(25);
 
-	reverseOrderPrint(root);
+	reverseInOrderPrint(root);
 	delete root;
 	return 0;
 }*/

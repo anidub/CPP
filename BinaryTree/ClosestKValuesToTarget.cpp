@@ -61,8 +61,12 @@ void closesKValuesTargetDFS(BNode* root, priority_queue<pair<double, int>>& pq, 
 	closesKValuesTargetDFS(root->right, pq, target, k);
 }
 
-void pushStack(BNode* root, double target, stack<BNode*>& pred, stack<BNode*>& succ);
 
+//---------------------------------Stack approach-------------------------------------------------//
+//https://leetcode.com/problems/closest-binary-search-tree-value-ii/discuss/70511/AC-clean-Java-solution-using-two-stacks : comments
+//..if the tree is balanced, the time cost will be amortized O(k), and the space cost will be O(logN), but if the tree is not balanced, the worst space cost will be O(N)
+void pushStack(BNode* root, double target, stack<BNode*>& pred, stack<BNode*>& succ);
+//TC:O(N), SC:O(N)
 vector<int> closesKValuesTargetLogN(BNode* root, double target, int k) {
     if(!root) return {};
     if(!root->left && !root->right) return {root->data};

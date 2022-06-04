@@ -34,7 +34,7 @@ public:
 };
 
 string findDuplicateSubtreesDFS(BNode* root, unordered_map<string, int>& map, vector<BNode*>& res);
-//Time:O(n2)
+//Time:O(n), sc:o(n^2)
 
 vector<BNode*> findDuplicateSubtrees(BNode* root) {
 	if(!root) return {};

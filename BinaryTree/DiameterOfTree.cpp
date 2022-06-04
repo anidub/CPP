@@ -32,7 +32,7 @@ public:
 		this->right = NULL;
 	}
 };
-
+//TC:O(N), SC:O(N)
 int diameterTreeIterative(BNode* root) {
 	if(root == NULL) return 0;
 	unordered_map<BNode*, int> depths;
@@ -58,6 +58,7 @@ int diameterTreeIterative(BNode* root) {
 int diameterBinaryTreeRecursive(BNode* root);
 int diameterBinaryTreeUtil(BNode* root, int& diameter);
 
+//TC:O(N), SC:O(N)
 int diameterBinaryTreeRecursive(BNode* root) {
 	int diameter = 0;
 	diameterBinaryTreeUtil(root, diameter);
@@ -85,5 +86,5 @@ int main() {
 
 	delete root;
 	return 0;
-}
-*/
+}*/
+
