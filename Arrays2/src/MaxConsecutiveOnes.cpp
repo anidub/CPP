@@ -37,6 +37,22 @@ int longestOnesSeries(vector<int> &nums, int k) {
 	}
 	return maxWin;
 }
+//https://www.educative.io/courses/grokking-the-coding-interview/B6VypRxPolJ GTCI
+//TC:O(N), SC: O(1)
+int longestOnesSeriesPattern(vector<int> &nums, int k) {
+	int maxLen = 0, windowStart = 0, maxOnes = 0;
+
+	for(int windowEnd = 0; windowEnd < nums.size(); windowEnd++) {
+		if(nums[windowEnd] == 1) maxOnes++;
+		if(windowEnd - windowStart + 1 - maxOnes > k) {
+			if(nums[windowStart] == 1) maxOnes--;
+			windowStart++;
+		}
+		maxLen = max(maxLen, windowEnd - windowStart + 1);
+	}
+	return maxLen;
+}
+
 /*
 int main() {
 	vector<int> nums = {1,1,1,0,0,0,1,1,1,1,0};
