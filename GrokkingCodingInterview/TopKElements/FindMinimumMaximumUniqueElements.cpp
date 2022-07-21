@@ -15,11 +15,13 @@ Output: 2
 Explanation: Remove 4, 2 and either one of the two 1s or three 3s. 1 and 3 will be left.
 https://leetcode.com/problems/least-number-of-unique-integers-after-k-removals/discuss/686891/C%2B%2B-map-%2B-priority_queue
 
+Given an array of numbers and a number ‘K’, we need to remove ‘K’ numbers from the array such that we are left with maximum distinct numbers.
 https://www.educative.io/courses/grokking-the-coding-interview/gx6oKY8PGYY
  */
 
 class FindMinimumMaximumUniqueElements{
 public:
+	//MINIMUM UNIQUE ELEMENTS!!!
 	//Time: O(nlogn), space: O(n).
 	int findMinimumUniqueElementsAfterKremoval(const vector<int> &arr, int k) {
 		if(arr.empty() || (int)arr.size() <= k) return 0;
@@ -34,6 +36,7 @@ public:
 			min_heap.push(freq.second);
 		}
 
+		// following a greedy approach, try removing the least frequent numbers first from the min-heap
 		while(k > 0) {
 			k = k - min_heap.top();
 			if(k >= 0)
@@ -48,6 +51,7 @@ public:
 		}
 	};
 
+	//MAXIMUM UNIQUE ELEMENTS!!!
 	//TC:O(N * LOGK + KLOGN), SC:O(N)
 	int findMaximumUniqueElementsAfterKremoval(const vector<int> &arr, int k) {
 		if(arr.empty() || arr.size() <= k) return 0;
@@ -66,6 +70,7 @@ public:
 				min_heap.push(entry);
 		}
 
+		// following a greedy approach, try removing the least frequent numbers first from the min-heap
 		while(k > 0 && !min_heap.empty()) {
 			auto entry = min_heap.top(); min_heap.pop();
 			k -= entry.second - 1;
@@ -86,15 +91,16 @@ int main(int argc, char *argv[]) {
 	FindMinimumMaximumUniqueElements fmme;
   int result =
 		  fmme.findMinimumUniqueElementsAfterKremoval(vector<int>{7, 3, 5, 8, 5, 3, 3}, 2);
-  cout << "Maximum distinct numbers after removing K numbers: " << result << endl;
+  cout << "Minimum distinct numbers after removing K numbers: " << result << endl;
 
   result = fmme.findMinimumUniqueElementsAfterKremoval(vector<int>{3, 5, 12, 11, 12}, 3);
-  cout << "Maximum distinct numbers after removing K numbers: " << result << endl;
+  cout << "Minimum distinct numbers after removing K numbers: " << result << endl;
 
   result = fmme.findMinimumUniqueElementsAfterKremoval(
       vector<int>{1, 2, 3, 3, 3, 3, 4, 4, 5, 5, 5}, 2);
-  cout << "Maximum distinct numbers after removing K numbers: " << result << endl;
+  cout << "Minimum distinct numbers after removing K numbers: " << result << endl;
 
+  cout << "-------------------------------------------------------------" << endl;
   result =
   		  fmme.findMaximumUniqueElementsAfterKremoval(vector<int>{7, 3, 5, 8, 5, 3, 3}, 2);
     cout << "Maximum distinct numbers after removing K numbers: " << result << endl;
