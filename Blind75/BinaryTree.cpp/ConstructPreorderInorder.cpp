@@ -26,6 +26,7 @@ struct TreeNode {
 
 class ConstructPreorderInorder {
 public:
+	//TC:O(N), SC:O(N)
 	TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
 		int rootIndex = 0;
 		return helper(preorder, rootIndex, inorder, 0, inorder.size() - 1);
@@ -45,6 +46,7 @@ private:
 		return root;
 	}
 
+	//CAN BUILD MAP FOR THIS FUNCTION FOR O(1) MAP of val and index
 	int findPosition(vector<int>& inorder, int val, int left, int right) {
 		for(int i = left; i <= right; i++) {
 			if(val == inorder[i])

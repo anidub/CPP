@@ -25,7 +25,7 @@ public:
 		if(len < 2) return s;
 
 		int start = 0, maxLen = 0;
-		for(int i = 0; i < len - 1; i++) {
+		for(int i = 0; i < len; i++) {
 			extendPalindrome(s, i, i,start, maxLen);//even
 			extendPalindrome(s, i, i + 1, start, maxLen);//odd
 		}

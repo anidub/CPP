@@ -38,6 +38,7 @@ https://leetcode.com/problems/lfu-cache/discuss/94516/Concise-C%2B%2B-O(1)-solut
  *
  *C++ is not Java. new returns a pointer.
  */
+
 class LFUcache {
 
 public:
@@ -70,7 +71,7 @@ public:
 				keyValFreqMap.erase(leastFreqElement);
 				listIterMap.erase(leastFreqElement);
 
-				freqMap[leastFreqElement].pop_back();
+				freqMap[minFreq].pop_back();
 				minFreq = 0;
 			}
 
@@ -95,9 +96,11 @@ private:
 		}
 	}
 };
+
+
 /*
 int main() {
-	/*LFUcache lRUCache(2);
+	LFUcache lRUCache(2);
 	lRUCache.put(1, 1); // cache is {1=1}
 	lRUCache.put(2, 2); // cache is {1=1, 2=2}
 	cout << lRUCache.get(1) << endl;    // return 1
@@ -106,7 +109,7 @@ int main() {
 	lRUCache.put(4, 4); // LRU key was 1, evicts key 1, cache is {4=4, 3=3}
 	lRUCache.get(1);    // return -1 (not found)
 	cout << lRUCache.get(3) << endl;    // return 3
-	lRUCache.get(4);    // return 4 */
+	lRUCache.get(4);    // return 4  */
 //-----------------------using new---------------------------------//
 /*	LFUcache *lfu = new LFUcache(2);
 	lfu->put(1, 1);   // cache=[1,_], cnt(1)=1
@@ -128,4 +131,4 @@ int main() {
 
 	delete lfu;
 	return 0;*/
-//}*/
+//}

@@ -52,7 +52,7 @@ private:
 	int numDecodeWaysRecursion(int p, string &s) {
         int n = s.size();
         if(p == n) return 1;
-        if(s[p] == '0') return 0;
+        if(s[p] == '0') return 0;// sub string starting with 0 is not a valid encoding
 
         int res = numDecodeWaysRecursion(p + 1, s);
 

@@ -22,9 +22,12 @@ in s comes before the letter in t in the alien language. If the first min(s.leng
  then s is smaller if and only if s.length < t.length.
 
  https://www.educative.io/courses/grokking-the-coding-interview/R8AJWOMxw2q
+
+ https://leetcode.com/problems/alien-dictionary/discuss/157298/C%2B%2B-BFS-and-Topoligical-Sort-with-explanation : comments
  */
 class AlienDictionary {
 public:
+	//TC:O(V + N), Sc:O(V + N) V : is the total number of different characters and ‘E’ is the total number of the rules
 	string alienOrder(const vector<string>& words) {
 		if(words.empty()) return "";
 		string sortedOrder;
@@ -41,13 +44,15 @@ public:
 
 		for(int i = 0; i < words.size() - 1; i++) {
 			string w1 = words[i], w2 = words[i + 1];
-			for(int j = 0; j < min(w1.length(), w2.length()); j++) {
+			int len = min(w1.size(), w2.size());
+			for(int j = 0; j < len; j++) {
 				char parent = w1[j], child = w2[j];
 				if(parent != child) {
 					graph[parent].push_back(child);
 					inDegree[child]++;
 					break;
 				}
+				if (j ==  len - 1 && w1.size() > w2.size()) return "";// in question provided as condition for lexicograph sort order
 			}
 		}
 

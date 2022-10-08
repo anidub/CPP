@@ -19,7 +19,7 @@ https://leetcode.com/problems/word-search/solution/
  */
 class WordSearch {
 public:
-	//TC:O(N * 3 ^ L), SC:O(L)
+	//TC:O(N * 3 ^ L), SC:O(L): L is length of word and N is number of cells
 	bool exist(vector<vector<char>>& board, string word) {
 		if(board.empty() || board[0].size() == 0) return false;
 

@@ -39,6 +39,9 @@ public:
 	int DIR[5] = {0, 1, 0, -1, 0};
 	vector<string> ans;
 
+	//Time: O(M * N * 4 * 3^(L-2) + S), where M*N <= 12*12 is total number of cells in the board, L <= 10 is the maximum length of words,
+	//S <= 3 * 10^5 is sum length of all words.
+	//Space: O(S)
 	vector<string> findWords(vector<vector<char>>& board, vector<string>& words) {
 		if(words.empty()) return ans;
 		m = board.size(), n = board[0].size();

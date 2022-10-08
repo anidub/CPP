@@ -53,6 +53,7 @@ public:
     	root = new TrieNode();
     }
 
+    //TC:O(N), SC:O(N) N is word length
     void insert(string word) {
         TrieNode* p = root;
         for(int i = 0; i < word.length(); i++) {
@@ -63,6 +64,7 @@ public:
         p->is_word = true;
     }
 
+    //TC:O(N), SC:O(1) N is word length
     bool search(string word) {
     	TrieNode* p = find(word);
     	return p != nullptr && p->is_word;

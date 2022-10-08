@@ -19,6 +19,13 @@ Explanation: Replace the two 'A's with two 'B's or vice versa.
 
 https://leetcode.com/problems/longest-repeating-character-replacement/discuss/91271/Java-12-lines-O(n)-sliding-window-solution-with-explanation
 https://leetcode.com/problems/longest-repeating-character-replacement/discuss/91285/Sliding-window-similar-to-finding-longest-substring-with-k-distinct-characters
+So, let's say there were no constraints like the k. Given a string convert it to a string with all same characters with minimal changes. The answer to this is
+
+length of the entire string - number of times of the maximum occurring character in the string
+
+Given this, we can apply the at most k changes constraint and maintain a sliding window such that
+
+(length of substring - number of times of the maximum occurring character in the substring) <= k
  */
 class LongestRepeatingCharReplacement {
 public:

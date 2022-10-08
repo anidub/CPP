@@ -43,6 +43,7 @@ public:
 		return res;
 	}
 
+	//TC:O(T * N), SC:O(T)
 	int combinationSum4Memo(vector<int> &nums, int target) {
 		vector<int> memo(target + 1, -1);
 		memo[0] = 1;

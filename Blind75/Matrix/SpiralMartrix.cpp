@@ -21,7 +21,7 @@ public:
 		vector<int> res;
 		int top = 0, left = 0, down = matrix.size() - 1, right = matrix[0].size() - 1;
 
-		while(left <= right && top <= down) {
+		while(left <= right && top <= down) { //TOP RIGHT DOWN LEFT:TRDL
 			for(int j = left; j <= right; j++) {
 				res.push_back(matrix[top][j]);
 			}

@@ -20,6 +20,15 @@ Output: true
 Explanation: Jump 1 step from index 0 to 1, then 3 steps to the last index.
 
  * https://leetcode.com/problems/jump-game/discuss/520481/C%2B%2B-easy-O(n)-solution-with-detailed-explanation
+ *
+ * For the last index, the minimum jump length required would be zero because you have reached the last index.
+For each index or position that we go backwards(since we are iterating right to left), the minimum jump length required increases by 1.
+
+We start from the second last index and increase minjump by 1 for each position. If at a particular index,
+ the maximum jump length at that position is greater than or equal to the minimum jump length required,
+  i.e., nums[i]>=minjump, then we can say that we can reach the last index from that position. Thus, we reduce the minimum jump length
+  required to zero if the condition is
+ satisfied so that for the next position when iterating backwards the minimum jump length required is 1 after incrementation.
  */
 class JumpGame {
 public:

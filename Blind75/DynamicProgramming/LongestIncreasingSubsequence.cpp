@@ -21,6 +21,8 @@ Explanation: The longest increasing subsequence is [2,3,7,101], therefore the le
 https://leetcode.com/problems/longest-increasing-subsequence/discuss/1326552/Optimization-From-Brute-Force-to-Dynamic-Programming-Explained!
 
 https://leetcode.com/problems/longest-increasing-subsequence/discuss/74824/JavaPython-Binary-search-O(nlogn)-time-with-explanation
+
+https://segmentfault.com/a/1190000003819886 : optimal better
  */
 class LongestIncreasingSubsequence {
 public:
@@ -62,6 +64,38 @@ public:
 		}
 		return size;
 	}
+
+	//TC:O(NLOGN), SC:O(N)
+	int lengthOfLIS_BinaryReadable(vector<int> &nums) {
+		if(nums.empty()) return 0;
+		int len = 0;
+		int tails[nums.size()];
+		tails[0] = nums[0];
+
+		for(int i = 1; i < nums.size(); i++) {
+			if(nums[i] < tails[0])
+				tails[0] = nums[i];
+			else if(nums[i] > tails[len])
+				tails[++len] = nums[i];
+			else
+				tails[binarySearch(tails, 0, len, nums[i])] = nums[i];
+		}
+		return len + 1;
+	}
+
+private:
+	 int binarySearch(int tails[], int left, int right, int target) {
+		 while(left <= right) {
+			 int mid = left + (right - left) / 2;
+			 if(tails[mid] == target)
+				 return mid;
+			 if(target > tails[mid])
+				 left = mid + 1;
+			 if(target > tails[mid])
+				 right = mid - 1;
+		 }
+		 return left;
+	 }
 };
 
 /*
@@ -71,6 +105,8 @@ int main() {
 	cout << lis.lengthOfLIS_DP(nums) << endl;
 
 	cout << lis.lengthOfLIS_Binary(nums) << endl;
+
+	cout << lis.lengthOfLIS_BinaryReadable(nums) << endl;
 
 	return 0;
 }

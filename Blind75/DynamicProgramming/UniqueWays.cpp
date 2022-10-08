@@ -22,6 +22,8 @@ Output: 28
 
 https://leetcode.com/problems/unique-paths/discuss/22954/C%2B%2B-DP
 solution tab for recursion code
+Since the robot can only move right and down, when it arrives at a point, it either arrives from left or above.
+
  */
 
 class UniqueWays {

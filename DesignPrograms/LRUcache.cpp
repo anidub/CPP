@@ -36,7 +36,9 @@ LRUcache *n = new LRUcache(10, 10); :The object is allocated on the heap, and a 
 
 
 Better yet, use a smart pointer and never call new and delete.
+https://leetcode.com/problems/lru-cache/discuss/1461942/C%2B%2Boror-Detailed-Solution-ororwith-DRY-RUN USED
  */
+/*
 class LRUcache {
 
 	size_t size;
@@ -68,10 +70,72 @@ public:
 		m_list.push_front({key, value});
 		m_map[key] = m_list.begin();
 	}
+}; */
+
+//Time complexity : O(1) both for put and get.
+//space complexity:O(capacity) since the space is used only for a hashmap and double linked list with at most capacity + 1 elements.
+class LRUCache {
+public:
+	class Node {
+	public:
+		int key;
+		int value;
+		Node* next;
+		Node* prev;
+		Node(int key, int value) {
+			this->key = key;
+			this->value = value;
+			this->next = nullptr, this->prev = nullptr;
+		}
+	};
+
+	Node* head = new Node(0, 0);
+	Node* tail = new Node(0, 0);
+	unordered_map<int, Node*> mp;
+	int capacity;
+
+	LRUCache(int capacity) {
+		this->capacity = capacity;
+		head->next = tail;
+		tail->prev = head;
+	}
+
+	void insert(Node* curNode) {
+		curNode->next = head->next;
+		head->next->prev = curNode;
+		head->next = curNode;
+		curNode->prev = head;
+		mp[curNode->key] = curNode;
+	}
+
+	void remove(Node* curNode){
+		mp.erase(curNode->key);
+		curNode->next->prev = curNode->prev;
+		curNode->prev->next = curNode->next;
+	}
+
+	int get(int key) {
+		if(mp.find(key) == mp.end())
+			return -1;
+		Node* curNode = mp[key];
+		remove(curNode);
+		insert(curNode);
+		return curNode->value;
+	}
+
+	void put(int key, int value) {
+		if(mp.find(key) != mp.end())
+			remove(mp[key]);
+		if(mp.size() == capacity)
+			remove(tail->prev);
+
+		insert(new Node(key, value));
+	}
 };
-/*
+
+
 int main() {
-	LRUcache lRUCache(2);
+	LRUCache lRUCache(2);
 	lRUCache.put(1, 1); // cache is {1=1}
 	lRUCache.put(2, 2); // cache is {1=1, 2=2}
 	cout << lRUCache.get(1) << endl;    // return 1
@@ -80,7 +144,8 @@ int main() {
 	lRUCache.put(4, 4); // LRU key was 1, evicts key 1, cache is {4=4, 3=3}
 	lRUCache.get(1);    // return -1 (not found)
 	cout << lRUCache.get(3) << endl;    // return 3
-	lRUCache.get(4);    // return 4
+	cout << lRUCache.get(4) << endl;;    // return 4
 
 	return 0;
-}*/
+}
+

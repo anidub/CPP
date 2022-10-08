@@ -23,6 +23,10 @@ Output: 3
 Explanation: You cannot rob house 1 (money = 2) and then rob house 3 (money = 2), because they are adjacent houses.
 
  * https://leetcode.com/problems/house-robber-ii/discuss/59921/9-lines-0ms-O(1)-Space-C%2B%2B-solution
+ * Suppose there are n houses, since house 0 and n - 1 are now neighbors, we cannot rob them together and thus the solution is now the maximum of
+
+Rob houses 0 to n - 2;
+Rob houses 1 to n - 1.
  */
 
 class HouseRobber2 {

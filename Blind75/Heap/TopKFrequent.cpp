@@ -17,6 +17,7 @@ Output: [1,2]
 class TopKFrequent {
 public:
 	//TC:O(NLOGK), SC:O(N +K)
+	//SC: O(N + K) : To store the hash map with not more N elements and a heap with k elements.
 	vector<int> topKFrequent(vector<int>& nums, int k) {
 		if(nums.empty()) return {};
 		vector<int> result;

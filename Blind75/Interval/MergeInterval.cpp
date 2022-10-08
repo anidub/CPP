@@ -36,7 +36,7 @@ public:
 				v[0] = min(v[0], intervals[i][0]);
 				v[1] = max(v[1], intervals[i][1]);
 				result[result.size() - 1] = v;
-			} else
+			} else // mean cur start in after last's end
 				result.push_back(intervals[i]);
 		}
 		return result;
