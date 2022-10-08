@@ -23,7 +23,7 @@ Output: "lee(t(c)o)de"
 Explanation: "lee(t(co)de)" , "lee(t(c)ode)" would also be accepted.
 https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/discuss/1073189/C%2B%2B-or-2-Approaches-or-O(n)-Beats-100-or-No-Extra-Space-(Best)-or-Explanation
  */
-//TC: O(N); S(1)
+//TC: O(N); S(N)
 string removeMinParenthesis(string s) {
 	if(s.empty()) return s;
 	stack<int> st;
