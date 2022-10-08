@@ -24,6 +24,7 @@ public:
 	    	numFrequencyMap[n]++;
 
 	    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>> > min_heap;
+
 	    for(auto numFreq : numFrequencyMap) {
 	    	min_heap.push( {numFreq.second, numFreq.first} );
 	    	if(min_heap.size() > k)

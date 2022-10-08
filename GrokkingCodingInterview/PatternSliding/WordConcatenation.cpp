@@ -10,7 +10,8 @@
 
 using namespace std;
 /*https://www.educative.io/courses/grokking-the-coding-interview/Y5YDWzqPn7O
- *Given a string and a list of words, find all the starting indices of substrings in the given string that are a concatenation of all the given words exactly once without any overlapping of words. It is given that all words are of the same length.
+ *Given a string and a list of words, find all the starting indices of substrings in the given string that are a concatenation of
+ *all the given words exactly once without any overlapping of words. It is given that all words are of the same length.
  Input: String="catcatfoxfox", Words=["cat", "fox"]
 Output: [3]
 Explanation: The only substring containing both the words is "catfox".
@@ -32,15 +33,16 @@ vector<int> findWordConcatenation(const string &str, const vector<string> &words
 		for(int j = 0; j < wordCount; j++) {
 			int nextWordIndex = i + j * wordLen;
 			string word = str.substr(nextWordIndex, wordLen);
-			if(wordMap.find(word) == wordMap.end()) break;
+			if(wordMap.find(word) == wordMap.end()) break;// break if we don't need this word
 			wordSeen[word]++;
-			if(wordSeen[word] > wordMap[word]) break;
+			if(wordSeen[word] > wordMap[word]) break;// no need to process further if the word has higher frequency than required
 
-			if(j + 1 == wordCount) result.push_back(i);
+			if(j + 1 == wordCount) result.push_back(i); // store index if we have found all the words
 		}
 	}
 	return result;
 }
+
 /*
 int main() {
 	  vector<int> result = findWordConcatenation("catfoxcat", vector<string>{"cat", "fox"});
@@ -54,5 +56,5 @@ int main() {
 	    cout << num << " ";
 	  }
 	  cout << endl;
-}
-*/
+}*/
+

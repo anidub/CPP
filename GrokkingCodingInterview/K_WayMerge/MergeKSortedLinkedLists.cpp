@@ -26,6 +26,11 @@ class ListNode {
 
 class MergeKSortedLists {
 public:
+	/*struct ValueCompare {
+		bool operator()(const ListNode* x, const ListNode* y) {
+			return x->value > y->value;
+		}
+	};*/
 	struct ValueCompare {
 		bool operator()(const ListNode* x, const ListNode* y) {
 			return x->value > y->value;

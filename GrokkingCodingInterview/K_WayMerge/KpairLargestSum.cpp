@@ -26,12 +26,6 @@ class LargestPairs {
     }
   };
 
-  struct ValueCompareMaxHeap {
-    bool operator()(const pair<int, int> &a, const pair<int, int> &b) {
-      return a.first + a.second  < b.first + b.second;
-    }
-  };
-
   //TC:O(N * M * LOGK), SC:O(K)
   vector<pair<int, int>> findKLargestPairs(const vector<int> &nums1, const vector<int> &nums2, int k) {
 	  	vector<pair<int, int>> result;
@@ -63,6 +57,11 @@ class LargestPairs {
  	 time complexity: O(m * n logk)
  	 space complexity O(k)
  */
+ struct ValueCompareMaxHeap {
+    bool operator()(const pair<int, int> &a, const pair<int, int> &b) {
+      return a.first + a.second  < b.first + b.second;
+    }
+  };
   vector<pair<int, int>> findKSmallestPairs(const vector<int> &nums1, const vector<int> &nums2, int k) {
     vector<pair<int, int>> result;
         priority_queue<pi, vector<pi>, ValueCompareMinHeap> maxHeap;

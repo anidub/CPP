@@ -25,11 +25,17 @@ public:
 
 	 //TC:O(N * S), SC:O(N * S)
 	 int canPartitionMemo(const vector<int> &nums) {
-		 int n = nums.size();
+		/* int n = nums.size();
 		 int sum = 0;
 
 		 for(int i : nums) sum += i;
 
+		 vector<vector<int>> memo(n, vector<int>(sum + 1, -1));
+
+		 return this->canPartitionMemo(memo, nums, 0, 0, 0);*/
+		 int n = nums.size();
+		 int sum = 0;
+		 for(int i : nums) sum += i;
 		 vector<vector<int>> memo(n, vector<int>(sum + 1, -1));
 
 		 return this->canPartitionMemo(memo, nums, 0, 0, 0);

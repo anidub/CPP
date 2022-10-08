@@ -30,7 +30,7 @@ int findMaxLengthKDistinct(const string& str, int k) {
 		charFreq[str[windowEnd]]++;
 
 		while(charFreq.size() > k) {
-			int leftChar = str[windowStart];
+			char leftChar = str[windowStart];
 			charFreq[leftChar]--;
 
 			if(charFreq[leftChar] == 0) charFreq.erase(leftChar);

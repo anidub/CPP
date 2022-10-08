@@ -15,6 +15,7 @@ using namespace std;
 Output: 6
 Explanation: The key is present at index '6' in the array.
  */
+
 class ArrayReader {
 public:
 	vector<int> arr;
@@ -55,6 +56,7 @@ public:
 		return -1;
 	}
 };
+
 /*
 int main(int argc, char *argv[]) {
 	SearchInfiniteSortedArray sira;
@@ -66,5 +68,5 @@ int main(int argc, char *argv[]) {
   cout << sira.search(reader, 15) << endl;
   cout << sira.search(reader, 200) << endl;
   delete reader;
-}
-*/
+}*/
+

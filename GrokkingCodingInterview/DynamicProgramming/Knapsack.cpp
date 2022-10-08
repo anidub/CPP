@@ -29,12 +29,12 @@ This shows that Banana + Melon is the best combination as it gives us the maximu
 class Knapsack {
 public:
 	  int solveKnapsackRecursive(const vector<int> &profits, vector<int> &weights, int capacity) {
-	    return this->knapsackRecursive(profits, weights, capacity, 0);
+		  return this->knapsackRecursive(profits, weights, capacity, 0);
 	  }
 
 	  int solveKnapsackMemoization(const vector<int> &profits, vector<int> &weights, int capacity) {
-		vector<vector<int>> memo(profits.size(), vector<int>(capacity + 1, -1));
-	    return this->solveKnapsackMemoization(memo, profits, weights, capacity, 0);
+		  vector<vector<int>> memo(profits.size(), vector<int>(capacity + 1, -1));
+		  return this->solveKnapsackMemoization(memo, profits, weights, capacity, 0);
 	  }
 
 	  int solveKnapsackBottomUpDP(const vector<int> &profits, vector<int> &weights, int capacity) {
@@ -89,7 +89,7 @@ This will ensure that whenever we change a value in dp[], we will not need it ag
 		    		dp[c] = profits[0];
 
 		    for(int i = 1; i < n; i++) {
-		    	for(int c = capacity; c >=0; c--) {
+		    	for(int c = capacity; c >= 0; c--) {
 		    		int profitInclude = 0, profitExclude = 0;
 
 		    		if(weights[i] <= c)// include the item, if it is not more than the capacity

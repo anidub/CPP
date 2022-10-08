@@ -30,8 +30,10 @@ int findOnesLength(const vector<int>& arr, int k) {
 	}
 	return maxLength;
 }
+
 /*
 int main(int argc, char* argv[]) {
   cout << findOnesLength(vector<int>{0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1}, 2) << endl;
   cout << findOnesLength(vector<int>{0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1}, 3) << endl;
-}*/
+}
+*/

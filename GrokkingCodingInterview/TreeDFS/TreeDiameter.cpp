@@ -22,7 +22,8 @@ public:
 	}
 };
 /*https://www.educative.io/courses/grokking-the-coding-interview/xVV1jA29YK9
- * Given a binary tree, find the length of its diameter. The diameter of a tree is the number of nodes on the longest path between any two leaf nodes. The diameter of a tree may or may not pass through the root.
+ * Given a binary tree, find the length of its diameter. The diameter of a tree is the number of nodes on the longest path between any two leaf nodes.
+ *  The diameter of a tree may or may not pass through the root.
 
 Note: You can always assume that there are at least two leaf nodes in the given tree.
  *
@@ -38,7 +39,7 @@ public:
 	}
 
 	int findTreeDiameterUtil(TreeNode *root, int &treeDiameter) {
-		if(root == nullptr) return 0;
+	if(root == nullptr) return 0;
 
 		int leftTreeHeight = findTreeDiameterUtil(root->left, treeDiameter);
 		int rightTreeHeight = findTreeDiameterUtil(root->right, treeDiameter);

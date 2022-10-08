@@ -43,9 +43,9 @@ public:
 /*
 int main(int argc, char* argv[]) {
   NextLetter nl;
-  cut << nl.searchNextLetter(vector<char>{'a', 'c', 'f', 'h'}, 'f') << endl;
+  cout << nl.searchNextLetter(vector<char>{'a', 'c', 'f', 'h'}, 'f') << endl;
   cout << nl.searchNextLetter(vector<char>{'a', 'c', 'f', 'h'}, 'b') << endl;
   cout << nl.searchNextLetter(vector<char>{'a', 'c', 'f', 'h'}, 'm') << endl;
   cout << nl.searchNextLetter(vector<char>{'a', 'c', 'f', 'h'}, 'h') << endl;
-}
-*/
+}*/
+

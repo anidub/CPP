@@ -22,26 +22,26 @@ a new subset from an existing set, therefore, the time complexity of the above a
  */
 class Subsets {
  public:
-	//TC: O(N * 2^N) SC: O(N*2^N)
+	//TC: O(N * 2^N) SC: O(N * 2^N)
   vector<vector<int>> findSubsets(const vector<int>& nums) {
-    vector<vector<int>> subsets;
-    subsets.push_back(vector<int>());
+	  vector<vector<int>> subsets;
+	  subsets.push_back(vector<int>());
 
-    for(int num : nums) {
-      int n = subsets.size();
-      for(int i = 0; i < n; i++) {
-        subsets.push_back(subsets[i]);
-        subsets.back().push_back(num);
-      }
-    }
-    return subsets;
+	  for(int num : nums) {
+		  int n = subsets.size();
+		  for(int i = 0; i < n; i++) {// create a new subset from the existing subset and insert the current element to it
+			  subsets.push_back(subsets[i]);
+			  subsets.back().push_back(num);
+		  }
+	  }
+	  return subsets;
   }
 };
 
 /*
 int main(int argc, char* argv[]) {
 	Subsets ss;
-  vector<vector<int>> result = ss.findSubsets(vector<int>{1, 3});
+  vector<vector<int>> result = ss.findSubsets(vector<int>{1, 2, 3});
   cout << "Here is the list of subsets: " << endl;
   for (auto vec : result) {
     for (auto num : vec) {

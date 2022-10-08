@@ -45,7 +45,7 @@ vector<int> findStringAnagrams(const string &str, const string &pattern) {
 
 		if(windowEnd >= pattern.length() - 1) {
 			char leftChar = str[windowStart++];
-			if(charFreq.find(windowStart) != charFreq.end()) {
+			if(charFreq.find(leftChar) != charFreq.end()) {
 				if(charFreq[leftChar] == 0) matched--;
 				charFreq[leftChar]++;
 			}

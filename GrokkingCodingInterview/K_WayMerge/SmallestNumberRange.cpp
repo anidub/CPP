@@ -17,6 +17,7 @@ Explanation: The range [4, 7] includes 5 from L1, 4 from L2 and 7 from L3.
 
 https://leetcode.com/problems/smallest-range-covering-elements-from-k-lists/
  */
+//typedef pair<int, pair<int, int>> pi;
 typedef pair<int, pair<int, int>> pi;
 
 class SmallestRange {
@@ -29,7 +30,7 @@ public:
 		int mx = INT_MIN, mn = INT_MAX;
 
 		for(int i = 0; i < lists.size(); i++) {
-			min_heap.push({lists[i][0], {i, 0}});
+			min_heap.push({lists[i][0], {i, 0}}); // value, {array idx, value position}
 			mx = max(mx, lists[i][0]);
 			mn = min(mn, lists[i][0]);
 		}

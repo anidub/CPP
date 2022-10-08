@@ -23,6 +23,8 @@ public:
 	}
 
 	int countSubsetsMemo(vector<int> &nums, int sum) {
+		//vector<vector<int>> memo(nums.size(), vector<int>(sum + 1, -1));
+		//return this->countSubsetsMemo(memo, nums, sum, 0);
 		vector<vector<int>> memo(nums.size(), vector<int>(sum + 1, -1));
 		return this->countSubsetsMemo(memo, nums, sum, 0);
 	}
@@ -81,12 +83,12 @@ private:
 			return 0;
 
 		int sum1 = 0;
-		if(nums[currentIndex] <= sum)
+		if(nums[currentIndex] <= sum) // if the number at currentIndex exceeds the sum, we shouldn't process this
 			sum1 = countSubsetsRecursive(nums, sum - nums[currentIndex], currentIndex + 1);
 
-		int sum2 = countSubsetsRecursive(nums, sum, currentIndex + 1);
+		int sum2 = countSubsetsRecursive(nums, sum, currentIndex + 1);// recursive call after excluding the number at the currentIndex
 
-		return sum1 + sum2;
+		return sum1 + sum2; //count of subsets who has a sum equal to 'S'
 	}
 
 	int countSubsetsMemo(vector<vector<int>> &memo, vector<int> &nums, int sum, int currentIndex) {

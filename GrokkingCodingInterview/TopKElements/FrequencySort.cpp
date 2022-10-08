@@ -19,7 +19,7 @@ class FrequencySort {
 public:
 	struct valueCompare {
 		bool operator()(const pair<char, int> &x, const pair<char, int> &y) {
-			return y.second > x.second;
+			return x.second < y.second;
 		}
 	};
 

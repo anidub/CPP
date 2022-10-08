@@ -17,7 +17,7 @@ Output: [[],[1],[1,2],[1,2,2],[2],[2,2]]
  */
 class SubsetWithDuplicates {
  public:
-	////TC: O(N * 2^N) SC: O(N*2^N)
+	////TC: O(N * 2^N) SC: O(N * 2^N)
   vector<vector<int>> findSubsets(vector<int>& nums) {
     vector<vector<int>> subsets;
     subsets.push_back(vector<int>());

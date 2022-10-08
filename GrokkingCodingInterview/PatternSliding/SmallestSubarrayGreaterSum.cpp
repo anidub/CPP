@@ -22,7 +22,6 @@ Explanation: The smallest subarray with a sum greater than or equal to '7' is [5
 // which is asymptotically equivalent to O(N)
 
 int findMinSubArray(int S, const vector<int>& arr) {
-    // TODO: Write your code here
     int minLen = INT_MAX;
     int windowStart = 0, curSum = 0;
 

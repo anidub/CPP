@@ -29,19 +29,19 @@ class FrequencyStack {
 unordered_map<int, int> freq;// element count
 priority_queue< pair<int, pair<int, int> > > max_heap;
 int pos = 0;
- public:
-  void push(int num) {
-    freq[num]++;
-    pos++;
-    max_heap.push( {freq[num], {pos, num} });
-  }
+public:
+	void push(int num) {
+		freq[num]++;
+		pos++;
+		max_heap.push( {freq[num], {pos, num} });
+	}
 
-  int pop() {
-    auto val = max_heap.top(); max_heap.pop();
-    int x = val.second.second;
-    freq[x]--;
-     return x;
-  }
+	int pop() {
+		auto val = max_heap.top(); max_heap.pop();
+		int x = val.second.second;
+		freq[x]--;
+		return x;
+	}
 };
 /*https://leetcode.com/problems/maximum-frequency-stack/discuss/1861911/C%2B%2B-or-Easy-solution-with-explanation-or-Simple-solution
  * Time Complexity : O(1) FOR PUSH AND POP
@@ -51,7 +51,6 @@ class FreqStackUsingStacks {
     unordered_map<int, int> freq;
     unordered_map<int, stack<int>> group_stack;
     int max_freq = 0;
-
 public:
     void push(int val) {
         freq[val]++;

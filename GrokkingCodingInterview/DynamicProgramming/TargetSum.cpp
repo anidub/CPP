@@ -15,6 +15,12 @@ using namespace std;
 Output: 3
 Explanation: The given set has '3' ways to make a sum of '1': {+1-1-2+3} & {-1+1-2+3} & {+1+1+2-3}
 
+ Sum(s1) - Sum(s2) = S
+ Sum(s1) + Sum(s2) = Sum(num)
+
+   => Sum(s1) - Sum(s2) + Sum(s1) + Sum(s2) = S + Sum(num)
+   => 2 * Sum(s1) =  S + Sum(num)
+   => Sum(s1) = (S + Sum(num)) / 2
  */
 class TargetSum {
 public:
@@ -22,14 +28,20 @@ public:
 	int findTargetSum(vector<int> &nums, int s) {
 		if(nums.empty()) return -1;
 
-		int totalSum = 0;
+	/*	int totalSum = 0;
 		for(int &i : nums)
 			totalSum += i;
 
-		if(totalSum < s || (s + totalSum) % 2 == 1)
+		if(totalSum < s || (s + totalSum) % 2 == 1)// if 's + totalSum' is odd, we can't find a subset with sum equal to '(s + totalSum) / 2'
 			return 0;
 
-		return countSubsets(nums, (s + totalSum) / 2);
+		return countSubsets(nums, (s + totalSum) / 2); */
+		int sum = 0;
+		for(int i : nums) sum += i;
+		if(sum <= s || (s + sum) % 2 == 1)
+			return 0;
+
+		return countSubsets(nums, (s + sum) / 2);
 	}
 
 	//TC: O(N * S), SC: O(N)

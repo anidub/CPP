@@ -61,11 +61,13 @@ ListNode* reverseSubList(ListNode *head, int p, int q) {
 	ListNode *lastNodeOfSubList = current;
 
 	ListNode *next;
+	i = 0;
 	while(current != nullptr && i < q - p + 1) {
 		next = current->next;
 		current->next = previous;
 		previous = current;
 		current = next;
+		i++;
 	}
 
 	if(lastNodeOfFirstPart != nullptr)

@@ -76,6 +76,7 @@ public:
 		return 0;
 	}
 };
+
 /*
 int main(int argc, char* argv[]) {
 	RotationCountOfRotatedArray rcra;
@@ -84,5 +85,5 @@ int main(int argc, char* argv[]) {
   cout << rcra.countRotations(vector<int>{1, 3, 8, 10}) << endl;
 
   cout << rcra.countRotationsWithDuplicates(vector<int>{3, 3, 7, 3}) << endl;
-}
-*/
+}*/
+

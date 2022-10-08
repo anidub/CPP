@@ -46,18 +46,19 @@ bool findPermutation(const string &str, const string &pattern) {
 		}
 		if(matched == (int)charFreq.size()) return true;
 
-		if(windowEnd >= pattern.length() - 1) {
+		if(windowEnd >= pattern.length() - 1) {// shrink the window
 			char leftChar = str[windowStart++];
 			if(charFreq.find(leftChar) != charFreq.end()) {
 				if(charFreq[leftChar] == 0) {
-					matched--;
+					matched--; // before putting the character back, decrement the matched count
 				}
-				charFreq[leftChar]++;
+				charFreq[leftChar]++;// put the character back for matching
 			}
 		}
 	}
 	return false;
 }
+
 /*
 int main() {
 	  cout << "Permutation exist: " << findPermutation("oidbcaf", "abc") << endl;

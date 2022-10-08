@@ -17,7 +17,7 @@ Output: [0, 1, 4, 4, 9]
 //TC: O(N), SC: O(1)
 vector<int> makeSquares(const vector<int> &arr) {
 	if(arr.empty()) return {};
-	int n = arr.size() - 1; int right = n - 1, left = 0;
+	int n = arr.size(); int right = n - 1, left = 0;
 	vector<int> squares(n);
 	int highestSqIdx = n - 1;
 

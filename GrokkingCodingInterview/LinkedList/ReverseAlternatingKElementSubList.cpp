@@ -37,7 +37,7 @@ ListNode *reverseAlternatingKElement(ListNode *head, int k) {
 
 	while(current != nullptr) {
 		ListNode *lastNodeOfPrevious = previous;
-		ListNode *lastNodeOfSub = current;
+		ListNode *lastNodeOfSub = current; //current batch
 
 		ListNode *next = nullptr;
 		for(int i = 0; i < k && current != nullptr; i++) {

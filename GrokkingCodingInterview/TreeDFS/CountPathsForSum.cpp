@@ -31,8 +31,10 @@ public:
 };
 
 class CountPathsTargetSum {
+
 unordered_map<int, int> seen;
 int sum, res = 0;
+
 public:
 	//TC:O(N), SC:O(N)
 	int countPathsTargetSum(TreeNode* root, int s) {

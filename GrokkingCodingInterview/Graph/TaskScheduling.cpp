@@ -71,6 +71,7 @@ public:
 		}
 	    // if sortedOrder doesn't contain all tasks, there is a cyclic dependency between tasks, therefore, we will not be able to schedule all tasks
 		return sortedOrder.size() == tasks;
+
 	}
 };
 

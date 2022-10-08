@@ -19,26 +19,26 @@ class PartitionSet {
  public:
 	//O(2^N), SC:O(N)
   bool canPartitionRecursive(const vector<int> &nums) {
-    int sum = 0;
-    for(int i : nums)
-    	sum += i;
+	  int sum = 0;
+	  for(int i : nums)
+		  sum += i;
 
-    if(sum % 2 != 0) return false;// if 'sum' is a an odd number, we can't have two subsets with equal sum
+	  if(sum % 2 != 0) return false;// if 'sum' is a an odd number, we can't have two subsets with equal sum
 
-    return this->canPartitionRecursive(nums, sum / 2, 0);
+	  return this->canPartitionRecursive(nums, sum / 2, 0);
   }
 
   //TC:O(N * S), SC:O(N * S)
   bool canPartitionMemo(const vector<int> &nums) {
-	    int sum = 0;
-	    for(int i : nums)
-	    	sum += i;
+	  int sum = 0;
+	  for(int i : nums)
+		  sum += i;
 
-	    if(sum % 2 != 0) return false;// if 'sum' is a an odd number, we can't have two subsets with equal sum
+	   if(sum % 2 != 0) return false;// if 'sum' is a an odd number, we can't have two subsets with equal sum
 
-	    vector<vector<int>> memo(nums.size(), vector<int>(sum / 2 + 1, -1));
+	   vector<vector<int>> memo(nums.size(), vector<int>(sum / 2 + 1, -1));
 
-	    return this->canPartitionMemo(memo, nums, sum / 2, 0);
+	   return this->canPartitionMemo(memo, nums, sum / 2, 0);
   }
 
   //TC:O(N * S), SC:O(N * S)
@@ -69,6 +69,7 @@ bool canPartitionBottomUp(const vector<int> &nums) {
 		}
 	}
 	return dp[n - 1][sum];// the bottom-right corner will have our answer.
+
 }
 
 private:

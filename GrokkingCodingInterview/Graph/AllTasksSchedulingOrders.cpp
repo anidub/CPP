@@ -12,6 +12,15 @@ using namespace std;
  * There are ‘N’ tasks, labeled from ‘0’ to ‘N-1’. Each task can have some prerequisite tasks which need to be completed
  *  before it can be scheduled. Given the number of tasks and a list
  *  of prerequisite pairs, write a method to print all possible ordering of tasks meeting all prerequisites.
+ *  Input: Tasks=3, Prerequisites=[0, 1], [1, 2]
+Output: [0, 1, 2]
+Explanation: There is only possible ordering of the tasks.
+
+Input: Tasks=4, Prerequisites=[3, 2], [3, 0], [2, 0], [2, 1]
+Output:
+1) [3, 2, 0, 1]
+2) [3, 2, 1, 0]
+Explanation: There are two possible orderings of the tasks meeting all prerequisites.
  */
 class AllTasksSchedulingOrder {
 public:
@@ -19,7 +28,7 @@ public:
 	//We need the ‘E’ part because in each recursive call, at max, we remove (and add back) all the edges.
 	void printOrders(int tasks, vector<vector<int>> &prerequisites) {
 		if(tasks <= 0) return;
-		vector<int> sortedOrder;
+	/*	vector<int> sortedOrder;
 
 		unordered_map<int, int> inDegree;
 		unordered_map<int, vector<int>> graph;
@@ -41,7 +50,27 @@ public:
 				sources.push_back(entry.first);
 		}
 
-		printAllTopoligicalSortBacktrack(inDegree, graph, sources, sortedOrder);
+		printAllTopoligicalSortBacktrack(inDegree, graph, sources, sortedOrder); */
+		vector<int> sortedOrder;
+		unordered_map<int, int> indegree;
+		unordered_map<int, vector<int>> graph;
+
+		for(int i = 0; i < tasks; i++) {
+			indegree[i] = 0;
+			graph[i] = vector<int>();
+		}
+
+		for(int i = 0; i < prerequisites.size(); i++) {
+			int parent = prerequisites[i][0], child = prerequisites[i][1];
+			graph[parent].push_back(child);
+			indegree[child]++;
+		}
+
+		vector<int> sources;
+		for(auto entry : indegree) {
+			if(entry.second == 0) sources.push_back(entry.first);
+		}
+		printAllTopoligicalSortBacktrack(indegree, graph, sources, sortedOrder);
 	}
 
 private:

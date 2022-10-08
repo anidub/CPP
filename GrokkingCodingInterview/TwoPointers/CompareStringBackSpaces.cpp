@@ -10,13 +10,14 @@
 
 using namespace std;
 /*https://www.educative.io/courses/grokking-the-coding-interview/g7pBzR12YPl
+ * Given two strings containing backspaces (identified by the character ‘#’), check if the two strings are equal.
  *Input: str1="xy#z", str2="xyz#"
 Output: false
 Explanation: After applying backspaces the strings become "xz" and "xy" respectively.
  */
 int getNextValidCharIndex(const string &str, int index);
 
-//TC:O(N_M), SC:O(1)
+//TC:O(N + M), SC:O(1)
 bool compareStringBackspaces(const string &str1, const string &str2) {
 	if(str1.empty() || str2.empty()) return false;
 	int index1 = str1.length() - 1, index2 = str2.length() - 1;
@@ -55,6 +56,10 @@ int main() {
 	string s1 = "xy#z";
 	string s2 = "xzz#";
 	cout << compareStringBackspaces(s1, s2) << endl;
+	cout << compareStringBackspaces("xy#z", "xzz#") << endl;
+	cout << compareStringBackspaces("xy#z", "xyz#") << endl;
+	cout << compareStringBackspaces("xp#", "xyz##") << endl;
+	cout << compareStringBackspaces("xywrrmp", "xywrrmu#p") << endl;
 
 	return 0;
 }*/

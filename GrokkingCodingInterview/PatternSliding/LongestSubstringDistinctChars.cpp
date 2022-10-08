@@ -11,6 +11,9 @@
 using namespace std;
 /*https://www.educative.io/courses/grokking-the-coding-interview/YMzBx1gE5EO
  * Given a string, find the length of the longest substring, which has all distinct characters.
+ * Input: String="aabccbb"
+Output: 3
+Explanation: The longest substring with distinct characters is "abc".
  */
 //TC: O(N), SC:O(K)where K is the number of distinct characters in the input
 int findMaxLengthDistinctChars(const string& str) {
@@ -19,9 +22,9 @@ int findMaxLengthDistinctChars(const string& str) {
 	int windowStart = 0, maxLength = 0;
 
 	for(int windowEnd = 0; windowEnd < str.length(); windowEnd++) {
-		int rightChar = str[windowEnd];
+		char rightChar = str[windowEnd];
 		if(charFreq.find(rightChar) != charFreq.end()) {
-			windowStart = max(windowStart, charFreq[rightChar] + 1);
+			windowStart = max(windowStart, charFreq[rightChar] + 1);// + 1 because we take next char
 		}
 		charFreq[rightChar] = windowEnd;
 		maxLength = max(maxLength, windowEnd - windowStart + 1);

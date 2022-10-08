@@ -60,7 +60,7 @@ public:
 	    // Any node that has already been a leaf cannot be the root of a minimum height tree, because
 	    // its adjacent non-leaf node will always be a better candidate.
 		int totalNodes = nodes;
-		while(totalNodes > 2) {
+		while(totalNodes > 2) {// we will never have more than 2 as our answer as in even then 2 and in odd then 1//https://youtu.be/ZfzVig8UqBQ?t=593
 			int leavesSize = leaves.size();
 			totalNodes -= leavesSize;
 			for(int i = 0; i < leavesSize; i++) {
@@ -76,7 +76,7 @@ public:
 		move(begin(leaves), end(leaves), back_inserter(minHeightTrees));
 
 		return minHeightTrees;
-  }
+	 }
 };
 
 /*

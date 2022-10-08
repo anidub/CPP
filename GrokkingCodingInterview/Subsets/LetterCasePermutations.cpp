@@ -17,27 +17,26 @@ https://leetcode.com/problems/letter-case-permutation/
 class LetterCaseStringPermutation {
  public:
 	//TC:O(N*2^N), SC:O(N*2^N)
-  vector<string> findLetterCaseStringPermutations(const string& str) {
-    vector<string> permutations;
-    permutations.push_back(str);
+ vector<string> findLetterCaseStringPermutations(const string& str) {
+	  vector<string> permutations;
+	  permutations.push_back(str);
 
-    for(int i = 0; i < str.length(); i++) {
-      if(isalpha(str[i])) {
-        int n = permutations.size();
-        for(int j = 0; j < n; j++) {
-          vector<char> chs(permutations[j].begin(), permutations[j].end());
-          if(islower(chs[i])) {
-            chs[i] = toupper(chs[i]);
-          } else {
-            chs[i] = tolower(chs[i]);
-          }
-          permutations.push_back(string(chs.begin(), chs.end()));
-        }
-      }
-    }
-    return permutations;
-  }
-};
+	  for(int i = 0; i < str.size(); i++) {
+		  if(isalpha(str[i])) {
+			  int n = permutations.size();
+			  for(int j = 0; j < n; j++) {
+				  vector<char> chs(permutations[j].begin(), permutations[j].end());
+				  if(islower(chs[i]))
+					  chs[i] = toupper(chs[i]);
+				  else
+					  chs[i] = tolower(chs[i]);
+				  permutations.push_back(string(chs.begin(), chs.end()));
+			  }
+		  }
+	  }
+	  return permutations;
+ }
+ };
 
 /*
 int main(int argc, char* argv[]) {
@@ -55,4 +54,5 @@ int main(int argc, char* argv[]) {
     cout << str << " ";
   }
   cout << endl;
-}*/
+}
+*/

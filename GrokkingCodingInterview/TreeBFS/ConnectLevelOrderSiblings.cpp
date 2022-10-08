@@ -21,7 +21,8 @@ public:
  }
 };
 /*https://www.educative.io/courses/grokking-the-coding-interview/NE5109Jl02v
- * Given a binary tree, connect each node with its level order successor. The last node of each level should point to the first node of the next level.
+ *
+ * Given a binary tree, connect each node with its level order successor. The last node of each level should point to a null node.
  */
 class LevelOrderSiblings {
 public:

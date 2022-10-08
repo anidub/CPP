@@ -10,7 +10,11 @@
 
 using namespace std;
 /*https://www.educative.io/courses/grokking-the-coding-interview/R8DVgjq78yR
- * Given a string with lowercase letters only, if you are allowed to replace no more than k letters with any letter, find the length of the longest substring having the same letters after replacement.
+ * Given a string with lowercase letters only, if you are allowed to replace no more than k letters with any letter,
+ *  find the length of the longest substring having the same letters after replacement.
+ * Input: String="aabccbb", k=2
+Output: 5
+Explanation: Replace the two 'c' with 'b' to have the longest repeating substring "bbbbb".
  */
 //TC: O(N), SC : since only lower case then O(26) which is asymptotically equal to O(1)
 int longestSubstringSameLetterAfterReplacement(const string &str, int K) {

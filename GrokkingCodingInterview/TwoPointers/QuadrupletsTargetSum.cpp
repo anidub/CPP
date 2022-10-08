@@ -11,8 +11,12 @@
 using namespace std;
 /*https://www.educative.io/courses/grokking-the-coding-interview/gxDOJJ7xAJl
  * Given an array of unsorted numbers and a target number, find all unique quadruplets in it, whose sum is equal to the target number.
+ * Input: [4, 1, 2, -1, 1, -3], target=1
+Output: [-3, -1, 1, 4], [-3, 1, 1, 2]
+Explanation: Both the quadruplets add up to the target.
  */
 void searchQuadrupletsTargetPairHelper(vector<int> &arr, int first, int second, int target, vector<vector<int>> &quadruplets);
+
 //TC: O(N^3)
 vector<vector<int>> searchQuadrupletsTargetSum(vector<int> &arr, int target) {
 	if(arr.empty()) return {};
@@ -45,6 +49,7 @@ void searchQuadrupletsTargetPairHelper(vector<int> &arr, int first, int second, 
 		else right--;
 	}
 }
+
 /*
 int main() {
 	  vector<int> vec = {4, 1, 2, -1, 1, -3};

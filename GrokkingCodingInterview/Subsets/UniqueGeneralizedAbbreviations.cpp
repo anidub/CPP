@@ -40,16 +40,16 @@ class GeneralizedAbbreviation {
   }
 
   void generateGeneralizedAbbreviationHelper(const string &word, string abbr, int index, vector<string> &result, bool prevNum) {
-    if(index == word.length()) {
-      result.push_back(abbr);
-      return ;
-    }
-    generateGeneralizedAbbreviationHelper(word, abbr + word[index], index + 1, result, false);
-    if (!prevNum) {
-    	for(int len = 1; index + len <= word.length(); len++) {
-    		generateGeneralizedAbbreviationHelper(word, abbr + to_string(len), index + len, result, true);
-    	}
-    }
+	  if(index == word.length()) {
+		  result.push_back(abbr);
+		  return ;
+	  }
+	  generateGeneralizedAbbreviationHelper(word, abbr + word[index], index + 1, result, false);
+	  if (!prevNum) { // Add number abbreviations only when we added a character instead of an abbreviation earlier
+		  for(int len = 1; index + len <= word.length(); len++) {
+			 generateGeneralizedAbbreviationHelper(word, abbr + to_string(len), index + len, result, true);
+		  }
+	  }
   }
 };
 

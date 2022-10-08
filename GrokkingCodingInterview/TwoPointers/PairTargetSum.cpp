@@ -13,6 +13,9 @@ using namespace std;
  * Given an array of sorted numbers and a target sum, find a pair in the array whose sum is equal to the given target.
 
 Write a function to return the indices of the two numbers (i.e. the pair) such that they add up to the given target.
+Input: [1, 2, 3, 4, 6], target=6
+Output: [1, 3]
+Explanation: The numbers at index 1 and 3 add up to 6: 2+4=6
  */
 //TC: O(N), SC: O(1)
 pair<int, int> pairTargetSumSearch(const vector<int>& arr, int targetSum) {
@@ -30,6 +33,7 @@ pair<int, int> pairTargetSumSearch(const vector<int>& arr, int targetSum) {
 	return make_pair(-1, -1);
 }
 
+//TC:O(N), SC:O(N)
 pair<int, int> pairTargetSumSearchMap(const vector<int>& arr, int targetSum) {
     unordered_map<int, int> nums;  // to store number and its index
     for (int i = 0; i < arr.size(); i++) {
@@ -40,7 +44,7 @@ pair<int, int> pairTargetSumSearchMap(const vector<int>& arr, int targetSum) {
       }
     }
     return make_pair(-1, -1);  // pair not found
-  }
+ }
 
 /*
 int main(int argc, char *argv[]) {
@@ -48,4 +52,5 @@ int main(int argc, char *argv[]) {
   cout << "Pair with target sum: [" << result.first << ", " << result.second << "]" << endl;
   result = pairTargetSumSearch(vector<int>{2, 5, 9, 11}, 11);
   cout << "Pair with target sum: [" << result.first << ", " << result.second << "]" << endl;
-}*/
+}
+*/

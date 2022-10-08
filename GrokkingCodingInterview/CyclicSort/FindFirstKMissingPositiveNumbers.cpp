@@ -44,7 +44,7 @@ vector<int> findFirstKMissingPositiveNumbers(vector<int> &nums, int k) {
 	while(missingNumbers.size() < k) {
 		int candidateNumber = i + nums.size();
 		// ignore if the array contains the candidate number
-		if(extraNumbers.find(candidateNumber) == extraNumbers.end()) {
+		if(extraNumbers.find(candidateNumber) == extraNumbers.end()) { // not found
 			missingNumbers.push_back(candidateNumber);
 		}
 		i++;

@@ -20,7 +20,7 @@ public:
 		right = nullptr;
 	}
 };
-/*https://www.educative.io/courses/grokking-the-coding-interview/B815A0y2Ajn
+/*
  * Given a binary tree, find the root-to-leaf path with the maximum sum.
  * https://leetcode.com/problems/binary-tree-maximum-path-sum/
  *
@@ -28,7 +28,6 @@ public:
  */
 class MaxPathSum {
 	int max_path_sum;
-
 public:
 	//TC:O(N), SC:O(H) where H is a tree height, to keep the recursion stack.
 	int maxPathSum(TreeNode* root) {
@@ -41,12 +40,42 @@ public:
 	int maxPathSumHelper(TreeNode *root) {
 		if(root == nullptr) return 0;
 
-		int left = max(0, maxPathSumHelper(root->left));
+		int left = max(0, maxPathSumHelper(root->left)); // could use INT_MIN instead of 0 if all negative values in tree
 		int right = max(0, maxPathSumHelper(root->right));
 
 		max_path_sum = max(max_path_sum, left + right + root->val);
 
 		return max(left, right) + root->val;
+	}
+};
+
+//https://makeinjava.com/find-maximum-sum-root-leaf-path-binary-tree-java-recursive-example/
+//Max sum path from root to leaf
+class MaxPathRootToLeafPath{
+public:
+	int maxSum = INT_MIN;
+	vector<int> getMaxRootToLeafSumPath(TreeNode* root) {
+		vector<int> result;
+		vector<int> curPath;
+		getMaxRootToLeafSumPathHelper(root, curPath, result, 0, 0);
+		return result;
+	}
+
+	void getMaxRootToLeafSumPathHelper(TreeNode* root, vector<int> curPath, vector<int> result, int index, int sum) {
+		if(root == nullptr) return;
+
+		sum += root->val;
+		curPath[index++] = root->val;
+
+		if(root->left == nullptr && root->right == nullptr) {
+			if(sum > maxSum) {
+				maxSum = sum;
+				result = curPath.begin() + index;
+			}
+			return ;
+		}
+		getMaxRootToLeafSumPathHelper(root->left, curPath, result, index, sum);
+		getMaxRootToLeafSumPathHelper(root->right, curPath, result, index, sum);
 	}
 };
 

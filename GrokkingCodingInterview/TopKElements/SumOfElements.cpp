@@ -33,7 +33,6 @@ class SumOfElements {
     	}
     }
 
-
     // get the sum of numbers between k1 and k2 indices these numbers will be at the top of the max heap
     for(int i = 0; i < k2 - k1 - 1; i++) {
     	elementSum += max_heap.top();

@@ -25,8 +25,9 @@ vector<int> findCorruptNumbers(vector<int> &nums) {
 	int i = 0;
 
 	while(i < nums.size()) {
-		if(nums[i] != nums[nums[i] - 1]) {
-			swapCN(nums, i, nums[i] - 1);
+		int j = nums[i] - 1;
+		if(nums[i] != nums[j]) {
+			swapCN(nums, i, j);
 		} else
 			i++;
 	}

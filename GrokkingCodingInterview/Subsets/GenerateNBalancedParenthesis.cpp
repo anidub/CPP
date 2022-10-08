@@ -12,6 +12,7 @@ using namespace std;
  * Input: N=3
 Output: ((())), (()()), (())(), ()(()), ()()()
  */
+
 class ParenthesisString {
 public:
 	string str;

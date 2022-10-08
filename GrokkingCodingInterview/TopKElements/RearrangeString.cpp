@@ -20,7 +20,7 @@ https://leetcode.com/problems/reorganize-string/
 class RearrangeString {
  public:
 	struct ValueCompare {
-		bool operator()(const pair<int, int> &a, const pair<int, int> &b) {
+		bool operator()(const pair<char, int> &a, const pair<char, int> &b) {
 			return a.second < b.second;
 		}
 	};
@@ -40,16 +40,14 @@ class RearrangeString {
 
 	  while(!max_heap.empty()) {
 		  auto current = max_heap.top(); max_heap.pop();
-		  if(previous.second > 0)
-			  max_heap.push(previous);
-
 		  result += current.first;
 		  current.second--;
+
+		  if(previous.second > 0)
+			  max_heap.push(previous);
 		  previous = current;
 	  }
 	  return result.size() == str.size() ? result : "";
-
-    return "";
   }
 
   //TC:O(N) SC:O(N) leetcode https://leetcode.com/problems/reorganize-string/ increase 26 to more for upper case

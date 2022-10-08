@@ -12,6 +12,8 @@ using namespace std;
 /*
  *
  * https://www.enjoyalgorithms.com/blog/find-the-kth-smallest-element-in-an-array
+ *
+ *
  */
 class KthSmallestNumber {
 public:
@@ -52,11 +54,12 @@ int getKthSmallest(vector<int> &nums, int K) {
 	         return findKthSmallestNumber(A, pos+1, right, K - count)  ;
  }
 
+ //https://www.youtube.com/watch?v=BP7GCALO2v8
  int partition(vector<int> &A, int left, int right)  {
      int pivot = A[right];
      int i = left - 1;
      for (int j = left; j < right; j++) {
-         if (A[j] <= pivot) {
+         if (A[j] < pivot) {
              i = i + 1;
              swap(A[i], A[j]);
          }

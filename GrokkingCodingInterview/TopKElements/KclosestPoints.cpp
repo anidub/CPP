@@ -16,7 +16,8 @@ Output: [[1,2]]
 Explanation: The Euclidean distance between (1, 2) and the origin is sqrt(5).
 The Euclidean distance between (1, 3) and the origin is sqrt(10).
 Since sqrt(5) < sqrt(10), therefore (1, 2) is closer to the origin.
- *
+ *https://leetcode.com/problems/k-closest-points-to-origin/discuss/221532/C%2B%2B-STL-quickselect-priority_queue-and-multiset comments
+ *https://www.youtube.com/watch?v=7h1s2SojIRw quick sort explained
  */
 class Point {
 public:
@@ -65,7 +66,8 @@ public:
  		return result;
 	}
 
-	//OPTIMAL //TC:O(N), SC:O(1)
+
+	//OPTIMAL //TC:O(N) for avg and ON^2) for worst, SC:O(1)
 	vector<Point> kClosestPointsOptimal(vector<Point> &points, int K) {
 		if(points.empty()) return {};
 

@@ -13,6 +13,14 @@ using namespace std;
  * Given an n x n matrix where each of the rows and columns is sorted in ascending order, return the kth smallest element in the matrix.
 
 Note that it is the kth smallest element in the sorted order, not the kth distinct element.
+Input: Matrix=[
+    [2, 6, 8],
+    [3, 7, 10],
+    [5, 8, 11]
+  ],
+  K=5
+Output: 7
+Explanation: The 5th smallest number in the matrix is 7.
 
  */
 class KthSmallestElementSortedMatrix {
@@ -45,6 +53,7 @@ private:
 			count += (c + 1);
 		}
 		return count;
+
 	}
 };
 

@@ -27,8 +27,8 @@ int findDuplicateNumber(vector<int> &nums) {
 			if(nums[i] != nums[nums[i] - 1])
 				swapD(nums, i, nums[i] - 1);
 			else
-				return nums[i];
-		} else// we have found the duplicate
+				return nums[i];// we have found the duplicate
+		} else
 			i++;
 	}
 	return -1;
@@ -53,7 +53,7 @@ int findDuplicateNumberOptimal(vector<int> &nums) {
 		fast = nums[nums[fast]];
 		if(slow == fast) break;
 	}
-	fast  = 0;
+	slow  = 0;
 	while(slow != fast) {
 		slow = nums[slow];
 		fast = nums[fast];

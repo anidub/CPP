@@ -56,22 +56,17 @@ public:
 		if(!root) return 0;
 		queue<TreeNode*> queue;
 		queue.push(root);
-		int minDepth = 0;
-
+		int maxDepth = 0;
 		while(!queue.empty()) {
-			minDepth++;
+			maxDepth++;
 			int sz = queue.size();
 			for(int i = 0; i < sz; i++) {
-				TreeNode *node = queue.front();
-				queue.pop();
-
-				if(node->left)
-					queue.push(node->left);
-				if(node->right)
-					queue.push(node->right);
+				TreeNode* node = queue.front(); queue.pop();
+				if(node->left) queue.push(node->left);
+				if(node->right) queue.push(node->right);
 			}
 		}
-		return minDepth;
+		return maxDepth;
 	}
 };
 /*

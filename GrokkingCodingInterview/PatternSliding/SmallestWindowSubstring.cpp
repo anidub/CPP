@@ -28,26 +28,29 @@ string findSmallestWindowSubstring(const string &str, const string &pattern) {
 		char rightChar = str[windowEnd];
 		if(charFreq.find(rightChar) != charFreq.end()) {
 			charFreq[rightChar]--;
-			if(charFreq[rightChar] >= 0) matched++;
+			if(charFreq[rightChar] >= 0) matched++;// count every matching of a character
 		}
-		while(matched == pattern.length()) {
+		while(matched == pattern.length()) {// shrink the window if we can, finish as soon as we remove a matched character
 			if(minLen > windowEnd - windowStart + 1) {
 				minLen = windowEnd - windowStart + 1;
 				start = windowStart;
 			}
 			char leftChar = str[windowStart++];
 			if(charFreq.find(leftChar) != charFreq.end()) {
-				if(charFreq[leftChar] == 0) matched--;
+				if(charFreq[leftChar] == 0) matched--;// note that we could have redundant matching characters, therefore we'll decrement the
+				//matched count only when a useful occurrence of a matched character is going out of the window
 				charFreq[leftChar]++;
 			}
 		}
 	}
 	return minLen > str.length() ? "" : str.substr(start, minLen);
 }
+
 /*
 int main(int argc, char *argv[]) {
   cout << findSmallestWindowSubstring("aabdec", "abc") << endl;
   cout << findSmallestWindowSubstring("aabdec", "abac") << endl;
   cout << findSmallestWindowSubstring("abdbca", "abc") << endl;
   cout << findSmallestWindowSubstring("adcad", "abc") << endl;
-}*/
+}
+*/

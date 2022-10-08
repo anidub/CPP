@@ -17,6 +17,12 @@ O(n)
  and without using any extra space. For simplicity, let’s assume we are passed an integer array
  containing only the sequence numbers, though each number is actually an object.
 
+Input: [3, 1, 5, 4, 2]
+Output: [1, 2, 3, 4, 5]
+
+
+Input: [2, 6, 4, 3, 1, 5]
+Output: [1, 2, 3, 4, 5, 6]
  */
 void swapNum(vector<int> &nums, int i, int j);
 //TC:O(N), SC:O(1)

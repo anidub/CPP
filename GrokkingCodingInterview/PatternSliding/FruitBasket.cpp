@@ -40,7 +40,7 @@ int findFruitLength(const vector<char>& arr) {
 	for(int windowEnd = 0; windowEnd < arr.size(); windowEnd++) {
 		fruitFreq[arr[windowEnd]]++;
 
-		while(fruitFreq.size() > 2) { // 2 because 2 baskets in question means we need ony 2 types of fruits
+		while(fruitFreq.size() > 2) { // 2 because 2 baskets in question means we need only 2 types of fruits
 			int leftFruit = arr[windowStart];
 			fruitFreq[leftFruit]--;
 			if(fruitFreq[leftFruit] == 0) fruitFreq.erase(leftFruit);
@@ -50,8 +50,10 @@ int findFruitLength(const vector<char>& arr) {
 	}
 	return maxLength;
 }
+
 /*
 int main(int argc, char* argv[]) {
   cout << "Maximum number of fruits: " << findFruitLength(vector<char>{'A', 'B', 'C', 'A', 'C'}) << endl;
   cout << "Maximum number of fruits: " << findFruitLength(vector<char>{'A', 'B', 'C', 'B', 'B', 'C'}) << endl;
-}*/
+}
+*/

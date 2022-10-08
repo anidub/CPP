@@ -42,15 +42,16 @@ struct endCompare {
 static bool comparator(const Job &a, const Job &b) {
 	return a.start < b.start;
 }
+
 //TC:O(NLOGN), SC: O(N)
 int findMaxCPULoad(vector<Job> &jobs) {
 	if(jobs.empty()) return 0;
 	int maxLoad = 0;
 	int curLoad = 0;
 
-	sort(jobs.begin(), jobs.end(), comparator);
+	sort(jobs.begin(), jobs.end(), comparator);//ascending order
 
-	priority_queue<Job, vector<Job>, endCompare> minHeap;
+	priority_queue<Job, vector<Job>, endCompare> minHeap;//end ascending order
 
 	for(auto &job : jobs) {
 
@@ -64,6 +65,7 @@ int findMaxCPULoad(vector<Job> &jobs) {
 		maxLoad = max(maxLoad, curLoad);
 	}
 	return maxLoad;
+
 }
 /*
 int main() {

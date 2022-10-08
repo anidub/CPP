@@ -14,6 +14,8 @@ using namespace std;
  *  Return the numbers in the sorted order. ‘X’ is not necessarily present in the array.
  * Input: [5, 6, 7, 8, 9], K = 3, X = 7
 Output: [6, 7, 8]
+At each operation, calculate mid = (left + right) / 2 and compare the two elements located at arr[mid] and arr[mid + k]. If the element at arr[mid] is closer to x,
+ then move the right pointer. If the element at arr[mid + k] is closer to x, then move the left pointer. Remember, the smaller element always wins when there is a tie.
  */
 class KclosestNumbers {
 public:
@@ -27,11 +29,11 @@ public:
 			int mid = left + (right - left) / 2;
 
 			if(x - A[mid] > A[mid + k] - x)
-				left = mid + 1;
+				left = mid + 1;// If the element at arr[mid + k] is closer to x, then move the left pointer.
 			else
-				right = mid;
+				right = mid;//If the element at arr[mid] is closer to x, then move the right pointer
 		}
-		return vector<int>(A.begin() + left, A.begin() + left + k);
+		return vector<int>(A.begin() + left, A.begin() + left + k);//At the end of the binary search, we have located the leftmost index for the final answer.
 	}
 };
 /*

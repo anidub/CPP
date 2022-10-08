@@ -24,7 +24,7 @@ public:
 	//TC: O(N * 2^N), SC: O(2^N)
 	vector<int> diffWaysToEvaluateExpression(const string& input) {
 		if(input.empty()) return {};
-		vector<int> result;
+		/*vector<int> result;
 		int size = input.size();
 
 		for(int i = 0; i < size; i++) {
@@ -48,16 +48,35 @@ public:
 		if(result.empty())
 			result.push_back(atoi(input.c_str()));
 
+		return result;*/
+		vector<int> result;
+		int size = input.size();
+		for(int i = 0; i < size; i++) {
+			char cur = input[i];
+			if(cur == '+' || cur == '-' || cur == '*') {
+				vector<int> result1 = diffWaysToEvaluateExpression(input.substr(0, i));
+				vector<int> result2 = diffWaysToEvaluateExpression(input.substr(i + 1));
+				for(int n1 : result1) {
+					for(int n2 : result2) {
+						if(cur == '+') result.push_back(n1 + n2);
+						else if(cur == '-') result.push_back(n1 - n2);
+						else if(cur == '*') result.push_back(n1 * n2);
+					}
+				}
+			}
+
+		}
+		if(result.empty()) result.push_back(atoi(input.c_str()));
 		return result;
 	}
 
 	//USED !! understand above as its same but with memo
 	//TC: O(N * 2^N), SC: O(2^N)
 	vector<int> diffWaysToEvaluateExpressionmemo(const string& input) {
-		//unordered_map<string, vector<int>> memo;
+	//	unordered_map<string, vector<int>> memo;
 	//	return diffWaysToEvaluateExpressionMEMO(input, memo);
 		unordered_map<string, vector<int>> memo;
-		return diffWaysToEvaluateExpressionMEMO(input, memo);
+		diffWaysToEvaluateExpressionMEMO(memo, input);
 	}
 
 	vector<int> diffWaysToEvaluateExpressionMEMO(const string& input, unordered_map<string, vector<int>> &memo) {
@@ -97,10 +116,12 @@ public:
 		}
 		if(result.empty())
 			result.push_back(atoi(input.c_str()));
+
 		memo[input] = result;
 		return result;
 	}
 };
+
 /*
 int main(int argc, char* argv[]) {
 	EvaluateExpression ee;
