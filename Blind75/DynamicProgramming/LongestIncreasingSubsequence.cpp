@@ -98,7 +98,7 @@ private:
 	 }
 	
 public:
-	    int binarySearch(int tails[], int left, int right, int target) {
+int binarySearch(int tails[], int left, int right, int target) {
         while(left <= right) {
             int mid = left + (right - left) / 2;
             if(tails[mid] == target) 
@@ -110,7 +110,7 @@ public:
         }
         return left;
     }
-    
+    //https://leetcode.com/problems/coin-change/discuss/1371738/C%2B%2B-Recursion-greater-DP-Memoization-greater-DP-Tabulation
    // TC:O(2 ^ N), SC:O(N)
     int lengthOfLISBrute(vector<int>& nums) {
         return lengthOfLISBrute(nums, 0, INT_MIN);
