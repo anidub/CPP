@@ -96,6 +96,65 @@ private:
 		 }
 		 return left;
 	 }
+	
+public:
+	    int binarySearch(int tails[], int left, int right, int target) {
+        while(left <= right) {
+            int mid = left + (right - left) / 2;
+            if(tails[mid] == target) 
+                return mid;
+            if(tails[mid] < target)
+                left = mid + 1;
+            if(tails[mid] > target)
+                right = mid - 1;
+        }
+        return left;
+    }
+    
+   // TC:O(2 ^ N), SC:O(N)
+    int lengthOfLISBrute(vector<int>& nums) {
+        return lengthOfLISBrute(nums, 0, INT_MIN);
+    }
+    
+    int lengthOfLISBrute(vector<int>& nums, int i, int prev) {
+        if(i >= nums.size()) return 0;
+        int take = 0, doNotTake = lengthOfLISBrute(nums, i + 1, prev);
+        if(nums[i] > prev) take = 1 + lengthOfLISBrute(nums, i + 1, prev);
+        return max(take, doNotTake);
+    }
+    
+    
+     // TC:O(N ^ 2), SC:O(N ^ 2)
+    vector<vector<int>> memo;
+    int lengthOfLISMemo(vector<int>& nums) {
+        memo.resize(nums.size(), vector<int>(nums.size() + 1, -1));
+        return lengthOfLISMemo(nums, 0, -1);
+    }
+    
+    int lengthOfLISMemo(vector<int>& nums, int i, int prev_i) {
+        if(i >= nums.size()) return -1;
+        if(memo[i][prev_i] != -1) return memo[i][prev_i];
+        int take = 0, doNotTake = lengthOfLISMemo(nums, i + 1, prev_i);
+        if(prev_i == -1 || nums[i] > prev_i) take = 1 + lengthOfLISMemo(nums, i + 1, prev_i);
+        memo[i][prev_i] = max(take, doNotTake);
+        return memo[i][prev_i];
+    }
+    
+    
+     // TC:O(N ^ 2), SC:O(N)
+    int lengthOfLISDP(vector<int> &nums) {
+        int ans = 1, n = nums.size();
+        vector<int> dp(n, 1);
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < i; j++) {
+                if(nums[i] > nums[j]) {
+                    dp[i] = max(dp[i], dp[j] + 1);
+                    ans = max(ans, dp[i]);
+                }
+            }
+        }
+        return ans;
+    }
 };
 
 /*
