@@ -38,22 +38,45 @@ public:
 		return dp[n];
 	}
 
-	//https://leetcode.com/problems/climbing-stairs/solution/
-	//TC:O(N), SC:O(1)
-	int climbStairsFibo(int n) {
-		if(n <= 0) return 0;
-		if(n <= 1) return 1;
-		if(n <= 2) return 2;
-
-		int first = 1, second = 2;
-
-		for(int i = 3; i <= n; i++) {
-			int sum = first + second;
-			first = second;
-			second = sum;
-		}
-		return second;
-	}
+    //TC:2 ^ N, SC:O(N)
+    int climbStairsBrute(int n) {
+        return climbStairsBrute(0, n);
+    }
+    
+    int climbStairsBrute(int i, int n) {
+        if(i > n) return 0;
+        if(i == n) return 1;
+        
+        return climbStairsBrute(i + 1, n) + climbStairsBrute(i + 2, n);
+    }
+    
+    //TC:O(N) SC:O(N)
+    int climbStairsMemo(int n) {
+        vector<int> memo(n + 1);
+        return climbStairsMemo(memo, 0, n);
+    }
+    
+    int climbStairsMemo(vector<int> &memo, int i, int n) {
+        if(i > 0) return 0;
+        if(i == 1) return 1;
+        if(memo[i] > 0) return memo[i];
+        
+        memo[i] = climbStairsMemo(memo, i + 1, n) + climbStairsMemo(memo, i + 2, n);
+        return memo[i];
+    }
+    
+    //TC:O(N), SC:O(1)
+    int climbStairsFibo(int n) {
+        if(n == 1) return 1;
+        int first = 1, second = 2;
+        for(int i = 3; i <= n; i++) {
+            int third = first + second;
+            first = second;
+            second = third;
+        }
+        return second;
+    }
+    
 };
 
 /*
