@@ -25,6 +25,8 @@ https://leetcode.com/problems/nested-list-weight-sum/discuss/249952/C%2B%2B-recu
 
 // This is the interface that allows for creating nested lists.
  // You should not implement it, or speculate about its implementation
+//TC:O(N), SC:O(N)
+
  class NestedInteger {
    public:
      // Constructor initializes an empty nested list.
@@ -51,32 +53,31 @@ https://leetcode.com/problems/nested-list-weight-sum/discuss/249952/C%2B%2B-recu
      const vector<NestedInteger> &getList() const;
 };
 
-int depthSum(vector<NestedInteger>& nestedList) {
-	if(nestedList.empty()) return 0;
+ //TC:O(N), SC:O(N)
+ int depthSum(vector<NestedInteger>& nestedList) {
+     queue<NestedInteger> todo;
+     for (auto &i : nestedList) {
+         todo.push(i);
+     }
+     int sum = 0, depth = 1;
 
-	queue<NestedInteger> q;
-	int depth = 1, sum = 0;
-
-	for(auto &n : nestedList) {
-		q.push(n);
-	}
-
-	while(!q.empty()) {
-		int sz = q.size();
-		for(int i = 0; i < sz; i++) {
-			NestedInteger item = q.front(); q.pop();
-
-			/*if(item.isInteger()) { 				//WORKS!!
-				sum += item.getInteger() * depth;
-			} else {
-				for(auto &j : item.getList())
-					q.push(j);
-			}*/
-		}
-		depth++;
-	}
-	return sum;
-}
+     while (!todo.empty()) {
+         int n = todo.size();
+         for (int i = 0; i < n; i++) {
+             NestedInteger ni = todo.front();
+             todo.pop();
+             if (ni.isInteger()) {
+                 sum += ni.getInteger() * depth;
+             } else {
+                 for (auto j : ni.getList()) {
+                     todo.push(j);
+                 }
+             }
+         }
+         depth++;
+     }
+     return sum;
+ }
 /*
 int main() {
 

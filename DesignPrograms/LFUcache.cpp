@@ -18,10 +18,14 @@ Implement the LFUCache class:
 
 LFUCache(int capacity) Initializes the object with the capacity of the data structure.
 int get(int key) Gets the value of the key if the key exists in the cache. Otherwise, returns -1.
-void put(int key, int value) Update the value of the key if present, or inserts the key if not already present. When the cache reaches its capacity, it should invalidate and remove the least frequently used key before inserting a new item. For this problem, when there is a tie (i.e., two or more keys with the same frequency), the least recently used key would be invalidated.
-To determine the least frequently used key, a use counter is maintained for each key in the cache. The key with the smallest use counter is the least frequently used key.
+void put(int key, int value) Update the value of the key if present, or inserts the key if not already present.
+When the cache reaches its capacity, it should invalidate and remove the least frequently used key before inserting a new item.
+For this problem, when there is a tie (i.e., two or more keys with the same frequency), the least recently used key would be invalidated.
+To determine the least frequently used key, a use counter is maintained for each key in the cache.
+The key with the smallest use counter is the least frequently used key.
 
-When a key is first inserted into the cache, its use counter is set to 1 (due to the put operation). The use counter for a key in the cache is incremented either a get or put operation is called on it.
+When a key is first inserted into the cache, its use counter is set to 1 (due to the put operation).
+The use counter for a key in the cache is incremented either a get or put operation is called on it.
 
 The functions get and put must each run in O(1) average time complexity.
 
@@ -43,9 +47,9 @@ class LFUcache {
 
 public:
 	size_t capacity;
-	unordered_map<int, pair<int, int>> keyValFreqMap;// map of key, {val, freq}
-	unordered_map<int, list<int>::iterator> listIterMap; //map of key -> frequency
-	unordered_map<int, list<int>> freqMap; //map of frequency -> iterator
+	unordered_map<int, pair<int, int>> keyToValueFreq;// map of key, {val, freq}
+	unordered_map<int, list<int>::iterator> keyToIter; //map of key -> iterator in freq list
+	unordered_map<int, list<int>> freqToList; //map of frequency -> to list of keys
 	int minFreq = 0;
 
 public:
@@ -54,49 +58,48 @@ public:
 	}
 
 	int get(int key) {
-		if(!keyValFreqMap.count(key)) return -1;
+		if(!keyToValueFreq.count(key)) return -1;
 		updateFrequency(key);
-		return keyValFreqMap[key].first;
+		return keyToValueFreq[key].first;
 	}
 
 	void put(int key, int value) {
 		if(this->capacity <= 0) return;
-		if(keyValFreqMap.count(key)) {
+		if(keyToValueFreq.count(key)) {
 			updateFrequency(key);
-			keyValFreqMap[key].first = value;
+			keyToValueFreq[key].first = value;
 		} else {
-			if(keyValFreqMap.size() == capacity) {
-				int leastFreqElement = freqMap[minFreq].back();
+			if(keyToValueFreq.size() == capacity) {
+				int leastFreqElement = freqToList[minFreq].back();
 
-				keyValFreqMap.erase(leastFreqElement);
-				listIterMap.erase(leastFreqElement);
+				keyToValueFreq.erase(leastFreqElement);
+				keyToIter.erase(leastFreqElement);
 
-				freqMap[minFreq].pop_back();
+				freqToList[minFreq].pop_back();
 				minFreq = 0;
 			}
 
-			keyValFreqMap[key] = {value, 0};
-			freqMap[0].push_front(key);
-			listIterMap[key] = freqMap[0].begin();
+			keyToValueFreq[key] = {value, 0};
+			freqToList[0].push_front(key);
+			keyToIter[key] = freqToList[0].begin();
 		}
 	}
 private:
 	void updateFrequency(int key) {
-		int freq = keyValFreqMap[key].second;
-		keyValFreqMap[key].second++;
+		int freq = keyToValueFreq[key].second;
+		keyToValueFreq[key].second++;
 
-		freqMap[freq].erase(listIterMap[key]);
-		freqMap[freq+1].push_front(key);
+		freqToList[freq].erase(keyToIter[key]);
+		freqToList[freq+1].push_front(key);
 
-		listIterMap[key] = freqMap[freq+1].begin();
+		keyToIter[key] = freqToList[freq+1].begin();
 
-		if(freqMap[minFreq].empty()) {
-			freqMap.erase(minFreq);
+		if(freqToList[minFreq].empty()) {
+			freqToList.erase(minFreq);
 			minFreq++;
 		}
 	}
 };
-
 
 /*
 int main() {

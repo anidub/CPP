@@ -90,11 +90,11 @@ void simulateTrafficLights(int duration) {
         }
     }
 }
-
+/*
 int main() {
     int duration = 20; // Setting duration to 20 for this example
 
     // Simulate the traffic lights based on the progression table
     simulateTrafficLights(duration);
     return 0;
-}
+}*/

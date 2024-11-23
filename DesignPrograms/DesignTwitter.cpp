@@ -44,8 +44,8 @@ with the O(n) part coming from constructing the heap of followed users
  */
 
 class Twitter {
-unordered_map<int, unordered_set<int>> fo;
-unordered_map<int, vector<pair<int, int>>> t;
+unordered_map<int, unordered_set<int>> fo; //userid, userid
+unordered_map<int, vector<pair<int, int>>> t; // {userid, {time, tweetId}}
 long long time;
 
 public:
@@ -54,7 +54,7 @@ public:
 	}
 
 	vector<int> getNewsFeed(int userId) {
-		priority_queue<pair<int, int>> maxHeap;
+		priority_queue<pair<int, int>> maxHeap;//time, tweetid
 		for(auto it = t[userId].begin(); it != t[userId].end(); it++)
 			maxHeap.push(*it);
 

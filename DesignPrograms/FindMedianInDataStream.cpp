@@ -37,31 +37,32 @@ Time and space complexity would be O(100) = O(1).
  In this case, we need an integer array of length 100 and a hashmap for these numbers that are not in [0,100].
  */
 class MedianFinder {
- priority_queue<int> firstQ;
- priority_queue<int, vector<int>, greater<int>> secQ;
+private:
+    priority_queue<int> max_heap; // max_heap for the first half to store smaller half of numbers : max element at root node
+    priority_queue<int, vector<int>, greater<int>> min_heap; // min_heap for the second half to store larger half of numbers : min element at root node
+
 public:
-	MedianFinder() {
+    // Adds a number into the data structure.
+    //TC:O(LOGN), SC:O(N)
+    void addNum(int num) {
+        if(max_heap.empty() || (max_heap.top() > num)) max_heap.push(num);  // if it belongs to the smaller half
+        else min_heap.push(num);
 
-	}
-	//TC O(logN), SC : O(N)
-	void addNum(int num) {
-		if(firstQ.empty() || firstQ.top() > num) firstQ.push(num);
-		else secQ.push(num);
+        // rebalance the two halfs to make sure the length difference is no larger than 1
+        if(max_heap.size() > (min_heap.size() + 1)) {
+            min_heap.push(max_heap.top());
+            max_heap.pop();
+        } else if(min_heap.size()  > max_heap.size() + 1 ) {
+            max_heap.push(min_heap.top());
+            min_heap.pop();
+        }
+    }
 
-		if(firstQ.size() + 1 < secQ.size()) {
-			firstQ.push(secQ.top());
-			secQ.pop();
-		} else  if(firstQ.size() > secQ.size() + 1) {
-			secQ.push(firstQ.top());
-			firstQ.pop();
-		}
-	}
-
-	//O(1)
-	double findMedian() {
-		if(firstQ.size() == secQ.size()) return firstQ.empty() ? 0 : (firstQ.top() + secQ.top()) / 2.0;
-		else return firstQ.size() > secQ.size() ? firstQ.top() : secQ.top();
-	}
+    // Returns the median of current data stream
+    double findMedian() {
+        if(max_heap.size() == min_heap.size()) return max_heap.empty() ? 0 : (max_heap.top() + min_heap.top()) / 2.0;
+        else return max_heap.size() > min_heap.size() ? max_heap.top() : min_heap.top();
+    }
 };
 /*
 int main() {

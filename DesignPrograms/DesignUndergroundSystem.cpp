@@ -64,6 +64,7 @@ journey concurrently during peak time.
 S^2 part in space complexity: Two stations to form a trip and each of those can be from S possible stations.
 So it is S^2, but these include stations paired with themselves. It is O(S^2 - S) = O(S^2).
 */
+
 class UndergroundSystem {
 	unordered_map<int, pair<string, int>> checkinMap; // uid -> {stationname, time}
 	unordered_map<string, pair<int, int>> checkoutMap; // route -> {totaltime, count}
@@ -86,8 +87,8 @@ public:
 		checkinMap.erase(id);// to save space
 	}
 
-	double getAverageTime(string startStatiom, string endStation) {
-		string route = startStatiom + "-" + endStation;
+	double getAverageTime(string startStation, string endStation) {
+		string route = startStation + "-" + endStation;
 		auto &checkout = checkoutMap[route];
 		return (double) checkout.first / checkout.second;
 	}

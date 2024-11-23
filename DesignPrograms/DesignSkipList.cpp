@@ -24,7 +24,11 @@ Output
 [null, null, null, null, false, null, true, false, true, false]
 https://leetcode.com/problems/design-skiplist/discuss/400028/C%2B%2B-SkipList.-2-pointer-for-each-node.-64ms.
  *
- */
+search(): O(log n)
+add(): O(log n)
+erase(): O(log n)
+*/
+
 struct Node {
 	Node *right;
 	Node *down;
@@ -47,7 +51,6 @@ public:
 			else
 				return true;
 		}
-		delete p;
 		return false;
 	}
 
@@ -68,12 +71,12 @@ public:
 
 			ins->right = new Node(ins->right, downNode, num);
 			downNode = ins->right;
-			insertUp = (rand() & 1) == 0;
+			insertUp = (rand() % 2 == 0); // Randomly decide whether to insert at a higher level
+
 		}
-		if(insertUp) {
+		if(insertUp) {        // If we need to add a new top level
 			head = new Node(new Node(nullptr, downNode, num), head, 0);
 		}
-		delete p;
 	}
 
 	bool erase(int num) {
@@ -88,7 +91,6 @@ public:
 				p = p->down;
 			}
 		}
-		delete p;
 		return seen;
 	}
 };
