@@ -133,7 +133,7 @@ public:
 	}
 };
 
-
+/*
 int main() {
 	LRUCache lRUCache(2);
 	lRUCache.put(1, 1); // cache is {1=1}
@@ -147,5 +147,5 @@ int main() {
 	cout << lRUCache.get(4) << endl;;    // return 4
 
 	return 0;
-}
+}*/
 

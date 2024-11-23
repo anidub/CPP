@@ -75,9 +75,10 @@ public:
  * push, pop, top, peekMax- O(1)
 popMax - O(n)- since in the worst case we need to pop all elements from the stack to get to the max if it was inserted first
  */
+
 class MaxStack{
 	stack<int> s1;
-	stack<int> s2;
+	stack<int> s2;//max stack
 public:
 	void push(int x) {
 		s1.push(x);
@@ -107,4 +108,3 @@ public:
 		return x;
 	}
 };
-

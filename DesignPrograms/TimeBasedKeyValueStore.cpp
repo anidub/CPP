@@ -37,8 +37,9 @@ timeMap.get("foo", 5);         // return "bar2"
 https://leetcode.com/problems/time-based-key-value-store/discuss/299520/C%2B%2B-unordered_map-%2B-Binary-Search(last-occurrence) and comments
 
  */
+
 class TimeMap {
-	unordered_map<string, vector<pair<int, string>>> m;
+	unordered_map<string, vector<pair<int, string>>> m;  // key, {timestamp, value} //All the timestamps timestamp of set are strictly increasing.
 public:
 	TimeMap() {
 

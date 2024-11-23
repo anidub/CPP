@@ -33,6 +33,7 @@ Output
 
 https://leetcode.com/problems/design-circular-deque/discuss/1141921/C%2B%2B-Simplest-Solution-Short-and-Clear
  */
+
 class CircularDeqeue {
 private:
 	vector<int> q;
@@ -40,7 +41,7 @@ private:
 public:
 	CircularDeqeue(int k) : head(0), tail(0), size(0), capacity(k), q(vector<int>(k, 0)) {}
 
-	/** Adds an item at the front of Deque. Return true if the operation is successful. */
+	// Adds an item at the front of Deque. Return true if the operation is successful.
 	bool insertFront(int value) {
 		if(isFull()) return false;
 		head = head == 0 ? capacity - 1 : head - 1;
@@ -49,7 +50,7 @@ public:
 		return true;
 	}
 
-	/** Adds an item at the rear of Deque. Return true if the operation is successful. */
+	// Adds an item at the rear of Deque. Return true if the operation is successful.
 	bool insertLast(int value) {
 		if(isFull()) return false;
 		q[tail] = value;
@@ -59,7 +60,7 @@ public:
 		return true;
 	}
 
-	/** Deletes an item from the front of Deque. Return true if the operation is successful. */
+	// Deletes an item from the front of Deque. Return true if the operation is successful.
 	bool deleteFront() {
 		if(isEmpty()) return false;
 		head = (head + 1) % capacity;
@@ -67,7 +68,7 @@ public:
 		return true;
 	}
 
-	/** Deletes an item from the rear of Deque. Return true if the operation is successful. */
+	// Deletes an item from the rear of Deque. Return true if the operation is successful.
 	bool deleteLast() {
 		if(isEmpty()) return false;
 		tail = tail == 0 ? capacity - 1 : tail - 1;
@@ -75,21 +76,21 @@ public:
 		return true;
 	}
 
-	 /** Get the front item from the deque. */
+	 // Get the front item from the deque.
 	int getFront() {
 		return isEmpty() ? -1 : q[head];
 	}
 
-	/** Get the last item from the deque. */
+	// Get the last item from the deque.
 	int getRear() {
 		return isEmpty() ? -1 : tail == 0 ? q[capacity - 1] : q[tail - 1];
 	}
 
-	/** Checks whether the circular deque is empty or not. */
+	// Checks whether the circular deque is empty or not.
 	bool isEmpty() {
 		return size == 0;
 	}
-	/** Checks whether the circular deque is full or not. */
+	// Checks whether the circular deque is full or not.
 	bool isFull() {
 		return size == capacity;
 	}

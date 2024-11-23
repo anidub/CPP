@@ -43,6 +43,15 @@ obj.input("#"); // return []. The user finished the input, the sentence "i a" sh
 
 https://leetcode.com/problems/design-search-autocomplete-system/discuss/105393/C%2B%2B-Trie-and-DFS-solution-beats-80 : comments
  */
+
+/*
+ * Time Complexity:
+O(L) per insertion L is length of string
+Space Complexity:  O(L) per insertion (for new nodes)
+
+Time Complexity: O(N+MlogM) Space : O(M) for input function N is  number of nodes in current subtree, M is number of strings
+ */
+
 class AutoCompleteSystem {
 private:
 	struct Node {
@@ -58,7 +67,8 @@ private:
 
 	struct comp {
 		bool operator()(pair<string, int>& a, pair<string, int>& b) {
-			return a.second < b.second || (a.second == b.second && a.first > b.first);
+			return a.second < b.second || (a.second == b.second && a.first > b.first); //if a.count < b.count then b comes before a // if a.word > b.word then a before b
+			//basically if expression returns true then b before a
 		}
 	};
 

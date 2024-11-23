@@ -55,6 +55,7 @@ class BSTree {
     return root;
   }
 
+  // needs modification to handle extreme right node
   int successor(TreeNode *root) {
     root = root->right;
     while (root->left != nullptr)
@@ -62,6 +63,7 @@ class BSTree {
     return root->val;
   }
 
+  // needs modification to handle extreme left node
   int predecessor(TreeNode *root) {
     root = root->left;
     while (root->right != nullptr)
@@ -98,6 +100,7 @@ class BSTree {
     return root;
   }
 };
+
 
 class Bucket {
 public:
@@ -153,6 +156,7 @@ public:
     return bucketArray[bucketIndex]->exists(key);
   }
 };
+
 /*
 int main(){
   MyHashSet *myHashSet = new MyHashSet();
@@ -167,5 +171,5 @@ int main(){
 
   delete myHashSet;
   return 0;
-}
-*/
+} */
+

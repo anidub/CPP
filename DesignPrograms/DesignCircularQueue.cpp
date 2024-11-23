@@ -40,7 +40,8 @@ public:
 
 	bool enQueue(int value) {
 		if(isFull()) return false;
-		q[tail++] = value;
+		q[tail] = value;
+		tail++;
 		tail = tail % capacity;
 		size++;
 		return true;
@@ -48,7 +49,7 @@ public:
 
 	bool deQueue() {
 		if(isEmpty()) return false;
-		head = (head+1) % capacity;
+		head = (head + 1) % capacity;
 		size--;
 		return true;
 	}

@@ -89,7 +89,9 @@ public:
 		return cur->content;
 	}
 };
+
 /*
+
 int main() {
 	 FileSystem* obj = new FileSystem();
 	 vector<string> param_1 = obj->ls("/");

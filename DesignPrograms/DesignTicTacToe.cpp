@@ -25,7 +25,7 @@ Output
 [null, 0, 0, 0, 0, 0, 0, 1]
 
 if row == col then diag else if (row + col == size - 1) then antidiagonal
-basicall keep a vector row and vector col. Increments row,col, diag, anti_diag for player 1 while same decrement both player 2;
+basically keep a vector row and vector col. Increments row,col, diag, anti_diag for player 1 while same decrement both player 2;
 if row, col, diag, anti == size then return player 1 else if they = -size then return player 2
 else draw return 0
 
@@ -35,6 +35,7 @@ https://leetcode.com/problems/design-tic-tac-toe/discuss/81913/Simple-O(1)-time-
  */
 
 //TC: O(1), SC : O(N)
+
 class TicTacToe {
 private:
 	vector<int> rows;

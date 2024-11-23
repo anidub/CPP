@@ -26,6 +26,7 @@ Output: [1,1,2,1,1]
 Explanation: By calling next repeatedly until hasNext returns false, the order of elements returned by next should be: [1,1,2,1,1].
 https://leetcode.com/problems/flatten-nested-list-iterator/discuss/80146/Real-iterator-in-Python-Java-C%2B%2B
  */
+
 class NestedInteger {
    public:
      // Return true if this NestedInteger holds a single integer, rather than a nested list.
@@ -39,7 +40,7 @@ class NestedInteger {
      // The result is undefined if this NestedInteger holds a single integer
      const vector<NestedInteger> &getList() const;
 };
-//TC: Constructor: O(1) as we just put references, SC: O(D) where D : max nesting depth
+
 class NestedIterator {
 public:
 	NestedIterator(vector<NestedInteger> &nestedList) {
@@ -48,7 +49,6 @@ public:
 	}
 
 	int next() {
-		//hasNext();
 		return (begins.top()++)->getInteger();
 	}
 /* WORKS!

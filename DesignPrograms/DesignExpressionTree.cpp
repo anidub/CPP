@@ -36,6 +36,7 @@ Explanation: this expression evaluates to the above binary tree with expression 
 
 https://leetcode.com/problems/design-an-expression-tree-with-evaluate-function/discuss/915167/JavaC%2B%2B-Implementing-an-abstract-class
  */
+
 class Node {
 public:
 	virtual ~Node() {};
@@ -44,17 +45,7 @@ protected:
 
 };
 
-class OpNode : public Node {
-public:
-	OpNode(char op, Node *left, Node *right) : op(op), left(left), right(right) {}
-	int evaluate() const;
-protected:
-	char op;
-	Node *left;
-	Node *right;
-};
-
-class NumNode : public Node {
+class NumNode : public Node { // number node
 public:
 	NumNode(int val) : val(val) {};
 	int evaluate() const {
@@ -64,6 +55,18 @@ public:
 protected:
 	int val;
 };
+
+class OpNode : public Node { // operation node like +,-,*,/
+public:
+	OpNode(char op, Node *left, Node *right) : op(op), left(left), right(right) {}
+	int evaluate() const;
+protected:
+	char op;
+	Node *left;
+	Node *right;
+};
+
+
 
 int OpNode::evaluate() const {
 	switch(this->op) {

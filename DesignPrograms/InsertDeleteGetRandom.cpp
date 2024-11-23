@@ -48,9 +48,10 @@ https://leetcode.com/problems/insert-delete-getrandom-o1-duplicates-allowed/disc
 https://leetcode.com/problems/insert-delete-getrandom-o1-duplicates-allowed/discuss/1708946/C%2B%2B-solution-using-Vector-and-Unordered-map! : well explained
  */
 //TC: O(1), SC:O(N)
+
 class RandomizedCollection {
-unordered_map<int, vector<int>> mp;
-vector<pair<int, int>> nums;
+unordered_map<int, vector<int>> mp; //store indices // value, {indices}
+vector<pair<int, int>> nums; // store elements // value, index of mp[value]
 
 public:
     RandomizedCollection() {

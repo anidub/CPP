@@ -40,8 +40,9 @@ When we goto second node we can decide if we replace the result r or not. The po
 Now let's goto third node and we can decide if we can replace the result r or not . The probability of picking the third node will be 1/3 . and not picking up will be 2/3 . So now we generate a random number between 0-to-2 if the result is 2 then we replace r with the value of indexed node 2
 We need to continue this till the end of list node .
 To conclude, if we have n different balls than the equal probability of picking any one of them will be 1/n .
-Now that's it, this is what reservoir sampling method looks like, told you its easy ;)
+rand() % len will be 0 only if rand() returns 0 or some multiple of len. For both these events, the probability is 1/len which makes it a valid random choice!!!
  */
+//TC:O(N) SC:O(1)
 struct ListNode {
 	int val;
 	ListNode* next;
@@ -62,7 +63,7 @@ int getRandom() {
 	int res, len = 1;
 	ListNode *cur = HeadNode;
 	while(cur) {
-		if(rand() % len == 0)
+		if(rand() % len == 0) //rand() % len will be 0 only if rand() returns 0 or some multiple of len. For both these events, the probability is 1/len which makes it a valid random choice!!!
 			res = cur->val;
 		len++;
 		cur = cur->next;
@@ -70,7 +71,10 @@ int getRandom() {
 	return res;
 }
 };
+
 /*
+ *
+ *
 int main() {
 	ListNode* head = new ListNode(1); head->next = new ListNode(2);head->next->next = new ListNode(3);
 	head->next->next->next = new ListNode(4);
